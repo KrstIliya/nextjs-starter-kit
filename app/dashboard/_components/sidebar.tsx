@@ -6,9 +6,7 @@ import {
   Banknote,
   HomeIcon,
   LucideIcon,
-  MessageCircleIcon,
   Settings,
-  Upload,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -24,16 +22,6 @@ const navItems: NavItem[] = [
     label: "Overview",
     href: "/dashboard",
     icon: HomeIcon,
-  },
-  {
-    label: "Chat",
-    href: "/dashboard/chat",
-    icon: MessageCircleIcon,
-  },
-  {
-    label: "Upload",
-    href: "/dashboard/upload",
-    icon: Upload,
   },
   {
     label: "Payment Gated",
