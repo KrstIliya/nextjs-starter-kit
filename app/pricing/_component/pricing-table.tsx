@@ -10,10 +10,11 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { authClient } from "@/lib/auth-client";
-import { Check } from "lucide-react";
+import { ArrowLeft, Check } from "lucide-react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 type SubscriptionDetails = {
   id: string;
@@ -45,6 +46,9 @@ export default function PricingTable({
 }: PricingTableProps) {
   const router = useRouter();
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
+  const hasSubscription =
+    subscriptionDetails.hasSubscription &&
+    subscriptionDetails.subscription?.status === "active";
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -87,9 +91,15 @@ export default function PricingTable({
 
   const STARTER_TIER = process.env.NEXT_PUBLIC_STARTER_TIER;
   const STARTER_SLUG = process.env.NEXT_PUBLIC_STARTER_SLUG;
+  const FREE_TIER = process.env.NEXT_PUBLIC_FREE_TIER;
+  const FREE_SLUG = process.env.NEXT_PUBLIC_FREE_SLUG;
 
   if (!STARTER_TIER || !STARTER_SLUG) {
     throw new Error("Missing required environment variables for Starter tier");
+  }
+
+  if (!FREE_TIER || !FREE_SLUG) {
+    throw new Error("Missing required environment variables for Free tier");
   }
 
   const isCurrentPlan = (tierProductId: string) => {
@@ -120,6 +130,76 @@ export default function PricingTable({
       </div>
 
       <div className="grid md:grid-cols-2 gap-8 max-w-4xl w-full">
+        {/* Free Tier */}
+        <Card className="relative h-fit">
+          {isCurrentPlan(FREE_TIER) && (
+            <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+              <Badge
+                variant="secondary"
+                className="bg-green-100 text-green-800"
+              >
+                Current Plan
+              </Badge>
+            </div>
+          )}
+          <CardHeader>
+            <CardTitle className="text-2xl">Starter Engines</CardTitle>
+            <CardDescription>Perfect for getting started</CardDescription>
+            <div className="mt-4">
+              <span className="text-4xl font-bold">$0</span>
+              <span className="text-muted-foreground">/month</span>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="flex items-center gap-3">
+              <Check className="h-5 w-5 text-green-500" />
+              <span>Access to Earth</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <Check className="h-5 w-5 text-green-500" />
+              <span>10GB Storage</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <Check className="h-5 w-5 text-green-500" />
+              <span>1 Team Member</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <Check className="h-5 w-5 text-green-500" />
+              <span>Email Support</span>
+            </div>
+          </CardContent>
+          <CardFooter>
+            {isCurrentPlan(FREE_TIER) ? (
+              <div className="w-full space-y-2">
+                <Button
+                  className="w-full"
+                  variant="outline"
+                  onClick={handleManageSubscription}
+                >
+                  Manage Subscription
+                </Button>
+                {subscriptionDetails.subscription && (
+                  <p className="text-sm text-muted-foreground text-center">
+                    {subscriptionDetails.subscription.cancelAtPeriodEnd
+                      ? `Expires ${formatDate(subscriptionDetails.subscription.currentPeriodEnd)}`
+                      : `Renews ${formatDate(subscriptionDetails.subscription.currentPeriodEnd)}`}
+                  </p>
+                )}
+              </div>
+            ) : (
+              <Button
+                className="w-full"
+                onClick={() => handleCheckout(FREE_TIER, FREE_SLUG)}
+              >
+                {isAuthenticated === false
+                  ? "Sign In to Get Started"
+                  : "Get Started"}
+              </Button>
+            )}
+          </CardFooter>
+        </Card>
+
+
         {/* Starter Tier */}
         <Card className="relative h-fit">
           {isCurrentPlan(STARTER_TIER) && (
@@ -133,17 +213,17 @@ export default function PricingTable({
             </div>
           )}
           <CardHeader>
-            <CardTitle className="text-2xl">Starter</CardTitle>
-            <CardDescription>Perfect for getting started</CardDescription>
+            <CardTitle className="text-2xl">Advanced Engines</CardTitle>
+            <CardDescription>Perfect for exploring the solar system</CardDescription>
             <div className="mt-4">
-              <span className="text-4xl font-bold">$1,000</span>
+              <span className="text-4xl font-bold">$4.99</span>
               <span className="text-muted-foreground">/month</span>
             </div>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="flex items-center gap-3">
               <Check className="h-5 w-5 text-green-500" />
-              <span>5 Projects</span>
+              <span>Access to all planets</span>
             </div>
             <div className="flex items-center gap-3">
               <Check className="h-5 w-5 text-green-500" />
@@ -191,6 +271,12 @@ export default function PricingTable({
       </div>
 
       <div className="mt-12 text-center">
+        <Button asChild variant="ghost" size="lg" className="min-h-12 text-base m-12 rounded-full">
+          <Link href={hasSubscription ? "/dashboard" : "/"}>
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            {hasSubscription ? "Back to Earth" : "Back to Home"}
+          </Link>
+        </Button>
         <p className="text-muted-foreground">
           Need a custom plan?{" "}
           <span className="text-primary cursor-pointer hover:underline">

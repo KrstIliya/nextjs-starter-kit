@@ -4,23 +4,14 @@ import { ThemeProvider } from "../components/provider";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 export const metadata: Metadata = {
-  title: "Next.js Starter Kit - Launch Your SAAS",
+  title: "Ablio — Learn and Grow with Fun Games",
   description:
-    "A modern, full-stack Next.js starter kit with authentication, payments, and dashboard. Built with TypeScript, Tailwind CSS, and shadcn/ui.",
+    "Ablio helps improve cognitive and mental abilities through interactive games designed for people with Down Syndrome.",
   openGraph: {
-    title: "Next.js Starter Kit",
+    title: "Ablio — Learn and Grow with Fun Games",
     description:
-      "A modern, full-stack Next.js starter kit with authentication, payments, and dashboard. Built with TypeScript, Tailwind CSS, and shadcn/ui.",
-    url: "nextstarter.xyz",
-    siteName: "Next.js Starter Kit",
-    images: [
-      {
-        url: "https://jdj14ctwppwprnqu.public.blob.vercel-storage.com/nsk-w9fFwBBmLDLxrB896I4xqngTUEEovS.png",
-        width: 1200,
-        height: 630,
-        alt: "Next.js Starter Kit",
-      },
-    ],
+      "Ablio helps improve cognitive and mental abilities through interactive games designed for people with Down Syndrome.",
+    siteName: "Ablio",
     locale: "en-US",
     type: "website",
   },
@@ -33,12 +24,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`font-[-apple-system,BlinkMacSystemFont]antialiased`}>
+      <body className="antialiased">
         <ThemeProvider
           attribute="class"
-          defaultTheme="light"
-          enableSystem
-          forcedTheme="light"
+          defaultTheme="dark"
+          forcedTheme="dark"
           disableTransitionOnChange
         >
           {children}

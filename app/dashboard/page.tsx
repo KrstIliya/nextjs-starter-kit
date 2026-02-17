@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 
 export default async function Dashboard() {
   const result = await auth.api.getSession({
-    headers: await headers(), // you need to pass the headers object.
+    headers: await headers(),
   });
 
   if (!result?.session?.userId) {
@@ -12,17 +12,8 @@ export default async function Dashboard() {
   }
 
   return (
-    <section className="flex flex-col items-start justify-start p-6 w-full">
-      <div className="w-full">
-        <div className="flex flex-col items-start justify-center gap-2">
-          <h1 className="text-3xl font-semibold tracking-tight">
-            Interactive Chart
-          </h1>
-          <p className="text-muted-foreground">
-            Interactive chart with data visualization and interactive elements.
-          </p>
-        </div>
-      </div>
+    <section className="flex flex-col items-center justify-center flex-1 p-6 w-full">
+
     </section>
   );
 }

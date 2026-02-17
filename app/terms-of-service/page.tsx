@@ -1,31 +1,34 @@
 import { Card, CardContent } from "@/components/ui/card";
+import PageContainer from "@/components/space/page-container";
+import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
 export default function TermsOfService() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950">
+    <PageContainer>
       <div className="container mx-auto px-4 py-16 max-w-4xl">
         <div className="mb-8">
           <Link
             href="/"
-            className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100"
+            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors min-h-12"
           >
-            ← Back to home
+            <ArrowLeft className="h-4 w-4" />
+            Back to home
           </Link>
         </div>
 
-        <Card className="shadow-xl border-0">
+        <Card className="bg-card border-border/50">
           <CardContent className="p-8 md:p-12">
-            <h1 className="text-3xl md:text-4xl font-bold mb-8">
+            <h1 className="text-3xl md:text-4xl font-bold mb-8 text-foreground">
               Terms of Service
             </h1>
-            <p className="text-sm text-gray-600 dark:text-gray-400 mb-8">
+            <p className="text-sm text-muted-foreground mb-8">
               Last updated: {new Date().toLocaleDateString()}
             </p>
 
-            <div className="space-y-8 text-gray-700 dark:text-gray-300">
+            <div className="space-y-8 text-foreground/80">
               <section>
-                <h2 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-gray-100">
+                <h2 className="text-2xl font-semibold mb-4 text-foreground">
                   1. Acceptance of Terms
                 </h2>
                 <p className="leading-relaxed">
@@ -37,7 +40,7 @@ export default function TermsOfService() {
               </section>
 
               <section>
-                <h2 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-gray-100">
+                <h2 className="text-2xl font-semibold mb-4 text-foreground">
                   2. Description of Service
                 </h2>
                 <p className="leading-relaxed">
@@ -50,7 +53,7 @@ export default function TermsOfService() {
               </section>
 
               <section>
-                <h2 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-gray-100">
+                <h2 className="text-2xl font-semibold mb-4 text-foreground">
                   3. User Accounts
                 </h2>
                 <div className="space-y-3">
@@ -79,7 +82,7 @@ export default function TermsOfService() {
               </section>
 
               <section>
-                <h2 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-gray-100">
+                <h2 className="text-2xl font-semibold mb-4 text-foreground">
                   4. Subscription and Payment
                 </h2>
                 <div className="space-y-3">
@@ -112,7 +115,7 @@ export default function TermsOfService() {
               </section>
 
               <section>
-                <h2 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-gray-100">
+                <h2 className="text-2xl font-semibold mb-4 text-foreground">
                   5. User Responsibilities and Conduct
                 </h2>
                 <div className="space-y-3">
@@ -151,7 +154,7 @@ export default function TermsOfService() {
               </section>
 
               <section>
-                <h2 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-gray-100">
+                <h2 className="text-2xl font-semibold mb-4 text-foreground">
                   6. Intellectual Property Rights
                 </h2>
                 <div className="space-y-3">
@@ -179,7 +182,7 @@ export default function TermsOfService() {
               </section>
 
               <section>
-                <h2 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-gray-100">
+                <h2 className="text-2xl font-semibold mb-4 text-foreground">
                   7. Privacy
                 </h2>
                 <p className="leading-relaxed">
@@ -190,7 +193,7 @@ export default function TermsOfService() {
               </section>
 
               <section>
-                <h2 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-gray-100">
+                <h2 className="text-2xl font-semibold mb-4 text-foreground">
                   8. Disclaimers
                 </h2>
                 <div className="space-y-3">
@@ -215,7 +218,7 @@ export default function TermsOfService() {
               </section>
 
               <section>
-                <h2 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-gray-100">
+                <h2 className="text-2xl font-semibold mb-4 text-foreground">
                   9. Limitation of Liability
                 </h2>
                 <p className="leading-relaxed uppercase font-medium">
@@ -242,7 +245,7 @@ export default function TermsOfService() {
               </section>
 
               <section>
-                <h2 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-gray-100">
+                <h2 className="text-2xl font-semibold mb-4 text-foreground">
                   10. Indemnification
                 </h2>
                 <p className="leading-relaxed">
@@ -256,7 +259,7 @@ export default function TermsOfService() {
               </section>
 
               <section>
-                <h2 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-gray-100">
+                <h2 className="text-2xl font-semibold mb-4 text-foreground">
                   11. Termination
                 </h2>
                 <p className="leading-relaxed">
@@ -269,7 +272,7 @@ export default function TermsOfService() {
               </section>
 
               <section>
-                <h2 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-gray-100">
+                <h2 className="text-2xl font-semibold mb-4 text-foreground">
                   12. Governing Law
                 </h2>
                 <p className="leading-relaxed">
@@ -282,7 +285,7 @@ export default function TermsOfService() {
               </section>
 
               <section>
-                <h2 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-gray-100">
+                <h2 className="text-2xl font-semibold mb-4 text-foreground">
                   13. Changes to Terms
                 </h2>
                 <p className="leading-relaxed">
@@ -294,7 +297,7 @@ export default function TermsOfService() {
               </section>
 
               <section>
-                <h2 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-gray-100">
+                <h2 className="text-2xl font-semibold mb-4 text-foreground">
                   14. Contact Information
                 </h2>
                 <p className="leading-relaxed">
@@ -307,9 +310,9 @@ export default function TermsOfService() {
                 </div>
               </section>
 
-              <section className="pt-8 border-t border-gray-200 dark:border-gray-700">
-                <p className="text-sm text-gray-600 dark:text-gray-400">
-                  By using Apple Pass, you acknowledge that you have read,
+              <section className="pt-8 border-t border-border">
+                <p className="text-sm text-muted-foreground">
+                  By using Ablio, you acknowledge that you have read,
                   understood, and agree to be bound by these Terms of Service.
                 </p>
               </section>
@@ -317,6 +320,6 @@ export default function TermsOfService() {
           </CardContent>
         </Card>
       </div>
-    </div>
+    </PageContainer>
   );
 }

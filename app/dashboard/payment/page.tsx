@@ -18,10 +18,10 @@ export default async function PaymentPage() {
       <div className="p-6 space-y-4">
         <div className="relative min-h-screen">
           {!subscriptionDetails.hasSubscription ||
-          subscriptionDetails.subscription?.status !== "active" ? (
+            subscriptionDetails.subscription?.status !== "active" ? (
             <>
               <div className="absolute inset-0 z-10 rounded-lg flex items-center justify-center">
-                <div className="bg-white dark:bg-gray-900 p-8 rounded-lg shadow-lg text-center max-w-md">
+                <div className="bg-card p-8 rounded-lg shadow-lg text-center max-w-md border border-border/50">
                   <h3 className="text-xl font-semibold mb-2">
                     Subscription Required
                   </h3>
@@ -30,7 +30,7 @@ export default async function PaymentPage() {
                     features.
                   </p>
                   <Link href="/pricing">
-                    <Button>Subscribe Now</Button>
+                    <Button className="min-h-12 text-base">Subscribe Now</Button>
                   </Link>
                 </div>
               </div>
@@ -108,8 +108,8 @@ export default async function PaymentPage() {
                   </div>
                 </div>
                 {subscriptionDetails.subscription.cancelAtPeriodEnd && (
-                  <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
-                    <p className="text-sm text-yellow-800">
+                  <div className="p-4 bg-yellow-400/10 border border-yellow-400/30 rounded-lg">
+                    <p className="text-sm text-yellow-300">
                       Your subscription will cancel at the end of the current
                       billing period.
                     </p>

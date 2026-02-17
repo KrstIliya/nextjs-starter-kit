@@ -197,16 +197,16 @@ function SettingsContent() {
       <div className="flex flex-col gap-6 p-6">
         {/* Header Skeleton */}
         <div>
-          <Skeleton className="h-9 w-32 mb-2 bg-gray-200 dark:bg-gray-800" />
-          <Skeleton className="h-5 w-80 bg-gray-200 dark:bg-gray-800" />
+          <Skeleton className="h-9 w-32 mb-2 bg-muted" />
+          <Skeleton className="h-5 w-80 bg-muted" />
         </div>
 
         {/* Tabs Skeleton */}
         <div className="w-full max-w-4xl">
           <div className="flex space-x-1 mb-6">
-            <Skeleton className="h-10 w-20 bg-gray-200 dark:bg-gray-800" />
-            <Skeleton className="h-10 w-28 bg-gray-200 dark:bg-gray-800" />
-            <Skeleton className="h-10 w-16 bg-gray-200 dark:bg-gray-800" />
+            <Skeleton className="h-10 w-20 bg-muted" />
+            <Skeleton className="h-10 w-28 bg-muted" />
+            <Skeleton className="h-10 w-16 bg-muted" />
           </div>
 
           <div className="space-y-6">
@@ -214,59 +214,59 @@ function SettingsContent() {
             <Card>
               <CardHeader>
                 <div className="flex items-center gap-2">
-                  <Skeleton className="h-5 w-5 rounded bg-gray-200 dark:bg-gray-800" />
-                  <Skeleton className="h-6 w-40 bg-gray-200 dark:bg-gray-800" />
+                  <Skeleton className="h-5 w-5 rounded bg-muted" />
+                  <Skeleton className="h-6 w-40 bg-muted" />
                 </div>
-                <Skeleton className="h-4 w-72 bg-gray-200 dark:bg-gray-800" />
+                <Skeleton className="h-4 w-72 bg-muted" />
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="flex items-center gap-4">
-                  <Skeleton className="h-20 w-20 rounded-full bg-gray-200 dark:bg-gray-800" />
+                  <Skeleton className="h-20 w-20 rounded-full bg-muted" />
                   <div className="space-y-2">
                     <div className="flex gap-2">
-                      <Skeleton className="h-8 w-24 bg-gray-200 dark:bg-gray-800" />
-                      <Skeleton className="h-8 w-12 bg-gray-200 dark:bg-gray-800" />
-                      <Skeleton className="h-8 w-16 bg-gray-200 dark:bg-gray-800" />
+                      <Skeleton className="h-8 w-24 bg-muted" />
+                      <Skeleton className="h-8 w-12 bg-muted" />
+                      <Skeleton className="h-8 w-16 bg-muted" />
                     </div>
-                    <Skeleton className="h-4 w-48 bg-gray-200 dark:bg-gray-800" />
+                    <Skeleton className="h-4 w-48 bg-muted" />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Skeleton className="h-4 w-20 bg-gray-200 dark:bg-gray-800" />
-                    <Skeleton className="h-10 w-full bg-gray-200 dark:bg-gray-800" />
+                    <Skeleton className="h-4 w-20 bg-muted" />
+                    <Skeleton className="h-10 w-full bg-muted" />
                   </div>
                   <div className="space-y-2">
-                    <Skeleton className="h-4 w-12 bg-gray-200 dark:bg-gray-800" />
-                    <Skeleton className="h-10 w-full bg-gray-200 dark:bg-gray-800" />
+                    <Skeleton className="h-4 w-12 bg-muted" />
+                    <Skeleton className="h-10 w-full bg-muted" />
                   </div>
                 </div>
 
-                <Skeleton className="h-10 w-28 bg-gray-200 dark:bg-gray-800" />
+                <Skeleton className="h-10 w-28 bg-muted" />
               </CardContent>
             </Card>
 
             {/* Change Password Card Skeleton */}
             <Card>
               <CardHeader>
-                <Skeleton className="h-6 w-36 bg-gray-200 dark:bg-gray-800" />
-                <Skeleton className="h-4 w-64 bg-gray-200 dark:bg-gray-800" />
+                <Skeleton className="h-6 w-36 bg-muted" />
+                <Skeleton className="h-4 w-64 bg-muted" />
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="space-y-2">
-                  <Skeleton className="h-4 w-32 bg-gray-200 dark:bg-gray-800" />
-                  <Skeleton className="h-10 w-full bg-gray-200 dark:bg-gray-800" />
+                  <Skeleton className="h-4 w-32 bg-muted" />
+                  <Skeleton className="h-10 w-full bg-muted" />
                 </div>
                 <div className="space-y-2">
-                  <Skeleton className="h-4 w-28 bg-gray-200 dark:bg-gray-800" />
-                  <Skeleton className="h-10 w-full bg-gray-200 dark:bg-gray-800" />
+                  <Skeleton className="h-4 w-28 bg-muted" />
+                  <Skeleton className="h-10 w-full bg-muted" />
                 </div>
                 <div className="space-y-2">
-                  <Skeleton className="h-4 w-40 bg-gray-200 dark:bg-gray-800" />
-                  <Skeleton className="h-10 w-full bg-gray-200 dark:bg-gray-800" />
+                  <Skeleton className="h-4 w-40 bg-muted" />
+                  <Skeleton className="h-10 w-full bg-muted" />
                 </div>
-                <Skeleton className="h-10 w-32 bg-gray-200 dark:bg-gray-800" />
+                <Skeleton className="h-10 w-32 bg-muted" />
               </CardContent>
             </Card>
           </div>
@@ -460,11 +460,11 @@ function SettingsContent() {
                                     • Canceled on{" "}
                                     {order.subscription.endedAt
                                       ? new Date(
-                                          order.subscription.endedAt,
-                                        ).toLocaleDateString("en-US", {
-                                          month: "short",
-                                          day: "numeric",
-                                        })
+                                        order.subscription.endedAt,
+                                      ).toLocaleDateString("en-US", {
+                                        month: "short",
+                                        day: "numeric",
+                                      })
                                       : "N/A"}
                                   </span>
                                 )}
@@ -558,8 +558,8 @@ export default function SettingsPage() {
       fallback={
         <div className="flex flex-col gap-6 p-6">
           <div>
-            <div className="h-9 w-32 mb-2 bg-gray-200 dark:bg-gray-800 animate-pulse rounded-md" />
-            <div className="h-5 w-80 bg-gray-200 dark:bg-gray-800 animate-pulse rounded-md" />
+            <div className="h-9 w-32 mb-2 bg-muted animate-pulse rounded-md" />
+            <div className="h-5 w-80 bg-muted animate-pulse rounded-md" />
           </div>
         </div>
       }

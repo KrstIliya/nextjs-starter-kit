@@ -1,38 +1,40 @@
+import { Rocket } from "lucide-react";
 import Link from "next/link";
 
 const links = [
-  {
-    title: "X",
-    href: "https://www.x.com/rasmickyy",
-  },
-  {
-    title: "YouTube",
-    href: "https://www.youtube.com/@rasmic",
-  },
+  { title: "Terms of Service", href: "/terms-of-service" },
+  { title: "Privacy Policy", href: "/privacy-policy" },
+  { title: "Pricing", href: "/pricing" },
 ];
 
 export default function FooterSection() {
   return (
-    <footer className="bg-background py-12">
+    <footer className="border-t border-border/40 bg-card/30 py-12">
       <div className="mx-auto max-w-5xl px-6">
-        <div className="flex flex-wrap justify-between gap-12">
-          <div className="order-last flex items-center gap-3 md:order-first">
-            <span className="text-muted-foreground block text-center text-sm">
-              © {new Date().getFullYear()} Exodus Labs, All rights reserved
-            </span>
-          </div>
+        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-2 text-lg font-bold text-foreground">
+            <Rocket className="h-5 w-5 text-primary" />
+            <span>Ablio</span>
+          </Link>
 
-          <div className="order-first flex flex-wrap gap-x-6 gap-y-4 md:order-last">
-            {links.map((link, index) => (
+          {/* Links */}
+          <nav className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3" aria-label="Footer navigation">
+            {links.map((link) => (
               <Link
-                key={index}
+                key={link.title}
                 href={link.href}
-                className="text-muted-foreground hover:text-primary block duration-150"
+                className="text-muted-foreground hover:text-foreground transition-colors text-sm min-h-12 flex items-center"
               >
-                <span>{link.title}</span>
+                {link.title}
               </Link>
             ))}
-          </div>
+          </nav>
+
+          {/* Copyright */}
+          <p className="text-muted-foreground text-sm text-center">
+            © {new Date().getFullYear()} Ablio. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>

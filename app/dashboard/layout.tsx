@@ -1,6 +1,5 @@
 import { ReactNode } from "react";
-import DashboardTopNav from "./_components/navbar";
-import DashboardSideBar from "./_components/sidebar";
+import DashboardShell from "./_components/navbar";
 
 export default async function DashboardLayout({
   children,
@@ -8,11 +7,10 @@ export default async function DashboardLayout({
   children: ReactNode;
 }) {
   return (
-    <div className="flex h-screen overflow-hidden w-full">
-      <DashboardSideBar />
-      <main className="flex-1 overflow-y-auto">
-        <DashboardTopNav>{children}</DashboardTopNav>
-      </main>
+    <div className="flex flex-col h-screen w-full space-gradient-bg">
+      <DashboardShell>
+        {children}
+      </DashboardShell>
     </div>
   );
 }

@@ -1,124 +1,97 @@
+import SectionContainer from "@/components/space/section-container";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import {
-  Shadcnui,
-  TailwindCSS,
-  BetterAuth,
-  Polar,
-  NeonPostgres,
-  Nextjs,
-} from "@/components/logos";
-import { Card } from "@/components/ui/card";
-import * as React from "react";
+  Puzzle,
+  BookOpen,
+  Calculator,
+  Palette,
+  Music,
+  Shapes,
+} from "lucide-react";
 
-export default function Integrations() {
+const services = [
+  {
+    icon: Shapes,
+    title: "Free Experience",
+    description: "Start playing right away with fun shape and color games — no payment needed.",
+    free: true,
+  },
+  {
+    icon: Puzzle,
+    title: "Memory Games",
+    description: "Match cards and remember patterns to make your memory stronger.",
+    free: false,
+  },
+  {
+    icon: Calculator,
+    title: "Number Games",
+    description: "Learn to count, add, and compare numbers with easy puzzles.",
+    free: false,
+  },
+  {
+    icon: BookOpen,
+    title: "Word Games",
+    description: "Practice letters, words, and simple reading through fun challenges.",
+    free: false,
+  },
+  {
+    icon: Palette,
+    title: "Art and Colors",
+    description: "Draw, paint, and learn about colors in a creative space.",
+    free: false,
+  },
+  {
+    icon: Music,
+    title: "Sound and Music",
+    description: "Play with sounds and rhythms to sharpen your listening skills.",
+    free: false,
+  },
+];
+
+export default function WhatWeOffer() {
   return (
-    <section>
-      <div className="pt-12 pb-32">
-        <div className="mx-auto max-w-5xl px-6">
-          <div>
-            <h2 className="text-balance text-3xl font-semibold md:text-4xl">
-              Built with the best tools
-            </h2>
-            <p className="text-muted-foreground mt-3 text-lg">
-              Launch your project with confidence, knowing that you&apos;re
-              using the best tools available.
-            </p>
-          </div>
-
-          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            <IntegrationCard
-              title="Next.js"
-              description="The React framework for production with App Router, Server Components, and built-in optimizations."
-              link="https://nextjs.org"
-            >
-              <Nextjs />
-            </IntegrationCard>
-
-            <IntegrationCard
-              title="Better Auth"
-              description="Modern authentication library with session management, OAuth providers, and security features."
-              link="https://better-auth.com"
-            >
-              <BetterAuth />
-            </IntegrationCard>
-
-            <IntegrationCard
-              title="Neon Postgres"
-              description="Serverless PostgreSQL database with branching, autoscaling, and modern developer experience."
-              link="https://neon.tech"
-            >
-              <NeonPostgres />
-            </IntegrationCard>
-
-            <IntegrationCard
-              title="Polar.sh"
-              description="Developer-first subscription platform with webhooks, customer portal, and usage-based billing."
-              link="https://polar.sh"
-            >
-              <Polar />
-            </IntegrationCard>
-
-            <IntegrationCard
-              title="Tailwind CSS"
-              description="Utility-first CSS framework for rapid UI development with consistent design tokens."
-              link="https://tailwindcss.com"
-            >
-              <TailwindCSS />
-            </IntegrationCard>
-
-            <IntegrationCard
-              title="shadcn/ui"
-              description="Beautiful, accessible components built with Radix UI primitives and styled with Tailwind CSS."
-              link="https://ui.shadcn.com"
-            >
-              <Shadcnui />
-            </IntegrationCard>
-          </div>
-        </div>
+    <SectionContainer id="services">
+      <div className="text-center mb-12">
+        <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+          What We Offer
+        </h2>
+        <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
+          Fun activities to help you learn and grow. Start for free and unlock more games!
+        </p>
       </div>
-    </section>
+
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {services.map((service) => {
+          const Icon = service.icon;
+          return (
+            <Card
+              key={service.title}
+              className={`bg-card border-border/50 relative ${service.free ? "border-primary/40 ring-1 ring-primary/20" : ""
+                }`}
+            >
+              {service.free && (
+                <div className="absolute -top-3 left-4">
+                  <Badge className="bg-primary text-primary-foreground text-xs px-3 py-1">
+                    Free
+                  </Badge>
+                </div>
+              )}
+              <CardContent className="p-6 flex flex-col gap-4">
+                <div className="rounded-xl bg-primary/10 p-3 w-fit">
+                  <Icon className="h-7 w-7 text-primary" />
+                </div>
+                <h3 className="text-lg font-semibold text-foreground">
+                  {service.title}
+                </h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  {service.description}
+                </p>
+              </CardContent>
+            </Card>
+          );
+        })}
+      </div>
+    </SectionContainer>
   );
 }
-
-const IntegrationCard = ({
-  title,
-  description,
-  children,
-  link,
-}: {
-  title: string;
-  description: string;
-  children: React.ReactNode;
-  link?: string;
-}) => {
-  const CardContent = () => (
-    <div className="relative">
-      <div className="*:size-10">{children}</div>
-
-      <div className="mt-6 space-y-1.5">
-        <h3 className="text-lg font-semibold">{title}</h3>
-        <p className="text-muted-foreground line-clamp-2">{description}</p>
-      </div>
-    </div>
-  );
-
-  if (link) {
-    return (
-      <a
-        href={link}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="block transition-transform hover:scale-105"
-      >
-        <Card className="p-6 h-full cursor-pointer hover:shadow-lg transition-shadow rounded-md">
-          <CardContent />
-        </Card>
-      </a>
-    );
-  }
-
-  return (
-    <Card className="p-6">
-      <CardContent />
-    </Card>
-  );
-};
