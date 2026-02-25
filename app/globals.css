@@ -54,7 +54,7 @@
     --popover: oklch(0.18 0.02 260);
     --popover-foreground: oklch(0.95 0.01 250);
 
-    --primary: oklch(0.65 0.2 250);
+    --primary: oklch(68.109% 0.16545 54.405);
     --primary-foreground: oklch(0.98 0.005 250);
 
     --secondary: oklch(0.22 0.02 260);
@@ -63,7 +63,7 @@
     --muted: oklch(0.25 0.015 260);
     --muted-foreground: oklch(0.65 0.02 250);
 
-    --accent: oklch(0.65 0.2 250);
+    --accent: oklch(73.687% 0.11467 62.702);
     --accent-foreground: oklch(0.98 0.005 250);
 
     --destructive: oklch(0.6 0.2 25);
@@ -71,7 +71,7 @@
 
     --border: oklch(0.28 0.015 260);
     --input: oklch(0.22 0.02 260);
-    --ring: oklch(0.65 0.2 250);
+    --ring: oklch(73.687% 0.11467 62.702);
 
     --chart-1: oklch(0.65 0.2 250);
     --chart-2: oklch(0.7 0.18 155);
@@ -107,21 +107,30 @@
     * {
         @apply border-border outline-ring/50;
     }
+
     body {
         @apply bg-background text-foreground font-sans;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
     }
+
     button,
     input,
     select,
     textarea {
         @apply focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all duration-200;
     }
+
     button {
         @apply hover:cursor-pointer;
     }
-    h1, h2, h3, h4, h5, h6 {
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
         @apply font-semibold tracking-tight;
     }
 }

@@ -3,6 +3,7 @@ import { db } from "@/db/drizzle";
 import { subscription } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { headers } from "next/headers";
+import { polarClient } from "@/lib/polar";
 
 export type SubscriptionDetails = {
   id: string;
@@ -41,6 +42,41 @@ export async function getSubscriptionDetails(): Promise<SubscriptionDetailsResul
       .where(eq(subscription.userId, session.user.id));
 
     if (!userSubscriptions.length) {
+      // ── Polar API fallback ──────────────────────────────────────────────────
+      // The webhook `onPayload` is called without `await` inside
+      // @polar-sh/better-auth, so the DB write can lag behind the user hitting
+      // the dashboard. Check Polar directly as the authoritative source.
+      try {
+        const customerState = await polarClient.customers.getStateExternal({
+          externalId: session.user.id,
+        });
+        const activeSubscription = customerState.activeSubscriptions?.[0];
+        if (activeSubscription) {
+          return {
+            hasSubscription: true,
+            subscription: {
+              id: activeSubscription.id,
+              productId: activeSubscription.productId,
+              status: String(activeSubscription.status ?? "active"),
+              amount: activeSubscription.amount ?? 0,
+              currency: activeSubscription.currency ?? "usd",
+              recurringInterval: String(activeSubscription.recurringInterval ?? "month"),
+              currentPeriodStart: new Date(activeSubscription.currentPeriodStart),
+              currentPeriodEnd: activeSubscription.currentPeriodEnd
+                ? new Date(activeSubscription.currentPeriodEnd)
+                : new Date(),
+              cancelAtPeriodEnd: activeSubscription.cancelAtPeriodEnd,
+              canceledAt: activeSubscription.canceledAt
+                ? new Date(activeSubscription.canceledAt)
+                : null,
+              organizationId: null,
+            },
+          };
+        }
+      } catch (polarError) {
+        // Polar API unavailable — fall through to hasSubscription: false
+        console.warn("Polar API fallback failed:", polarError);
+      }
       return { hasSubscription: false };
     }
 
@@ -127,22 +163,22 @@ export async function hasAccessToProduct(productId: string): Promise<boolean> {
 // Helper to get user's current subscription status
 export async function getUserSubscriptionStatus(): Promise<"active" | "canceled" | "expired" | "none"> {
   const result = await getSubscriptionDetails();
-  
+
   if (!result.hasSubscription) {
     return "none";
   }
-  
+
   if (result.subscription?.status === "active") {
     return "active";
   }
-  
+
   if (result.errorType === "CANCELED") {
     return "canceled";
   }
-  
+
   if (result.errorType === "EXPIRED") {
     return "expired";
   }
-  
+
   return "none";
 }

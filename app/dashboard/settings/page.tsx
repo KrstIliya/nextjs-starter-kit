@@ -322,7 +322,7 @@ function SettingsContent() {
                   <div className="flex gap-2">
                     <Button
                       variant="outline"
-                      size="sm"
+                      className="min-h-12 text-base"
                       onClick={() =>
                         document.getElementById("profile-image-input")?.click()
                       }
@@ -332,7 +332,7 @@ function SettingsContent() {
                     </Button>
                     {profileImage && (
                       <Button
-                        size="sm"
+                        className="min-h-12 text-base px-6"
                         onClick={handleUploadProfilePicture}
                         disabled={uploadingImage}
                       >
@@ -342,7 +342,7 @@ function SettingsContent() {
                     {imagePreview && (
                       <Button
                         variant="outline"
-                        size="sm"
+                        className="min-h-12 text-base px-6"
                         onClick={() => {
                           setImagePreview(null);
                           setProfileImage(null);
@@ -370,6 +370,7 @@ function SettingsContent() {
                   <Label htmlFor="name">Full Name</Label>
                   <Input
                     id="name"
+                    className="h-12 text-base"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Enter your full name"
@@ -380,6 +381,7 @@ function SettingsContent() {
                   <Input
                     id="email"
                     type="email"
+                    className="h-12 text-base"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter your email"
@@ -388,7 +390,7 @@ function SettingsContent() {
                 </div>
               </div>
 
-              <Button onClick={handleUpdateProfile}>Save Changes</Button>
+              <Button onClick={handleUpdateProfile} className="min-h-12 px-6 text-base">Save Changes</Button>
             </CardContent>
           </Card>
         </TabsContent>
@@ -404,6 +406,7 @@ function SettingsContent() {
               </div>
               <Button
                 variant="outline"
+                className="min-h-12 text-base px-6"
                 onClick={async () => {
                   try {
                     await authClient.customer.portal();

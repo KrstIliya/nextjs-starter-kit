@@ -9,6 +9,7 @@ import {
 import { getSubscriptionDetails } from "@/lib/subscription";
 import Link from "next/link";
 import ManageSubscription from "./_components/manage-subscription";
+import { ArrowLeft } from "lucide-react";
 
 export default async function PaymentPage() {
   const subscriptionDetails = await getSubscriptionDetails();
@@ -30,7 +31,7 @@ export default async function PaymentPage() {
                     features.
                   </p>
                   <Link href="/pricing">
-                    <Button className="min-h-12 text-base">Subscribe Now</Button>
+                    <Button className="min-h-12 text-base w-full">Subscribe Now</Button>
                   </Link>
                 </div>
               </div>
@@ -59,6 +60,12 @@ export default async function PaymentPage() {
                     </div>
                   </CardContent>
                 </Card>
+                <Button asChild variant="ghost" size="lg" className="min-h-12 text-base mt-12 w-full rounded-full">
+                  <Link href={"/dashboard"}>
+                    <ArrowLeft className="h-4 w-4 mr-2" />
+                    Back to Dashboard
+                  </Link>
+                </Button>
               </div>
             </>
           ) : (
@@ -116,6 +123,7 @@ export default async function PaymentPage() {
                   </div>
                 )}
                 <ManageSubscription />
+
               </CardContent>
             </Card>
           )}
