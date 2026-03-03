@@ -50,6 +50,12 @@ export async function getSubscriptionDetails(): Promise<SubscriptionDetailsResul
         const customerState = await polarClient.customers.getStateExternal({
           externalId: session.user.id,
         });
+
+        console.log("🔍 Polar customer state for user", session.user.id, JSON.stringify({
+          activeSubscriptionsCount: customerState.activeSubscriptions?.length ?? 0,
+          activeSubscriptionIds: customerState.activeSubscriptions?.map((s: { id: string }) => s.id),
+        }, null, 2));
+
         const activeSubscription = customerState.activeSubscriptions?.[0];
         if (activeSubscription) {
           return {
@@ -72,6 +78,51 @@ export async function getSubscriptionDetails(): Promise<SubscriptionDetailsResul
               organizationId: null,
             },
           };
+        }
+
+        // ── Secondary fallback: query subscriptions directly ────────────────
+        // Free ($0) plans may not appear in activeSubscriptions immediately.
+        // Query the subscriptions endpoint directly as a last resort.
+        try {
+          const { result: subsList } = await polarClient.subscriptions.list({
+            customerId: customerState.id,
+            active: true,
+          });
+
+          console.log("🔍 Polar subscriptions.list fallback:", JSON.stringify({
+            count: subsList.items?.length ?? 0,
+            subscriptions: subsList.items?.map((s: { id: string; status: string; productId: string }) => ({
+              id: s.id,
+              status: s.status,
+              productId: s.productId,
+            })),
+          }, null, 2));
+
+          const directSub = subsList.items?.[0];
+          if (directSub) {
+            return {
+              hasSubscription: true,
+              subscription: {
+                id: directSub.id,
+                productId: directSub.productId,
+                status: String(directSub.status ?? "active"),
+                amount: directSub.amount ?? 0,
+                currency: directSub.currency ?? "usd",
+                recurringInterval: String(directSub.recurringInterval ?? "month"),
+                currentPeriodStart: new Date(directSub.currentPeriodStart),
+                currentPeriodEnd: directSub.currentPeriodEnd
+                  ? new Date(directSub.currentPeriodEnd)
+                  : new Date(),
+                cancelAtPeriodEnd: directSub.cancelAtPeriodEnd ?? false,
+                canceledAt: directSub.canceledAt
+                  ? new Date(directSub.canceledAt)
+                  : null,
+                organizationId: null,
+              },
+            };
+          }
+        } catch (subListError) {
+          console.warn("Polar subscriptions.list fallback failed:", subListError);
         }
       } catch (polarError) {
         // Polar API unavailable — fall through to hasSubscription: false
