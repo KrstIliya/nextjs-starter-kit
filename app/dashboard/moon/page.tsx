@@ -17,11 +17,10 @@ export default async function MoonPage() {
     }
 
     const subscriptionDetails = await getSubscriptionDetails();
-    const hasFullAccess =
-        subscriptionDetails.subscription?.status === "active" &&
-        subscriptionDetails.subscription?.productId === process.env.NEXT_PUBLIC_STARTER_TIER;
+    const hasSubscription =
+        subscriptionDetails.subscription?.status === "active" && subscriptionDetails.subscription?.productId === process.env.NEXT_PUBLIC_STARTER_TIER;
 
-    if (!hasFullAccess) {
+    if (!hasSubscription) {
         return (
             <section className="flex flex-col items-center justify-center flex-1 p-6 w-full">
                 <Card className="max-w-md w-full bg-card border-border/50 text-center">
@@ -30,19 +29,19 @@ export default async function MoonPage() {
                             <Lock className="h-8 w-8 text-primary" />
                         </div>
                         <h2 className="text-2xl font-bold text-foreground">
-                            Moon is Locked
+                            Moon is Out of Reach
                         </h2>
                         <p className="text-muted-foreground text-lg leading-relaxed">
-                            You need the Advanced Engines plan to reach the Moon and play its games.
+                            You need to upgrade your ships engines to reach the Moon and its games.
                         </p>
                         <div className="flex flex-col gap-3">
                             <Button asChild size="lg" className="min-h-12 text-base w-full">
-                                <Link href="/pricing">Upgrade Plan</Link>
+                                <Link href="/pricing">Upgrade Ship Engines!</Link>
                             </Button>
                             <Button asChild variant="outline" size="lg" className="min-h-12 text-base w-full">
                                 <Link href="/dashboard">
                                     <ArrowLeft className="h-4 w-4 mr-2" />
-                                    Go Back to Earth
+                                    Back to Earth
                                 </Link>
                             </Button>
                         </div>

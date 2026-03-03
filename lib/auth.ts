@@ -7,10 +7,10 @@ import {
   usage,
   webhooks,
 } from "@polar-sh/better-auth";
+import { Polar } from "@polar-sh/sdk";
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { nextCookies } from "better-auth/next-js";
-import { polarClient } from "@/lib/polar";
 
 // Utility function to safely parse dates
 function safeParseDate(value: string | Date | null | undefined): Date | null {
@@ -19,6 +19,10 @@ function safeParseDate(value: string | Date | null | undefined): Date | null {
   return new Date(value);
 }
 
+const polarClient = new Polar({
+  accessToken: process.env.POLAR_ACCESS_TOKEN,
+  server: "sandbox",
+});
 
 export const auth = betterAuth({
   trustedOrigins: [`${process.env.NEXT_PUBLIC_APP_URL}`],
@@ -66,24 +70,8 @@ export const auth = betterAuth({
                   );
                 })(),
             },
-            {
-              productId:
-                process.env.NEXT_PUBLIC_FREE_TIER ||
-                (() => {
-                  throw new Error(
-                    "NEXT_PUBLIC_FREE_TIER environment variable is required",
-                  );
-                })(),
-              slug:
-                process.env.NEXT_PUBLIC_FREE_SLUG ||
-                (() => {
-                  throw new Error(
-                    "NEXT_PUBLIC_FREE_SLUG environment variable is required",
-                  );
-                })(),
-            },
           ],
-          successUrl: `${(process.env.NEXT_PUBLIC_APP_URL ?? "").replace(/\/$/, "")}/${(process.env.POLAR_SUCCESS_URL ?? "").replace(/^\//, "")}`,
+          successUrl: `${process.env.NEXT_PUBLIC_APP_URL}/${process.env.POLAR_SUCCESS_URL}`,
           authenticatedUsersOnly: true,
         }),
         portal(),

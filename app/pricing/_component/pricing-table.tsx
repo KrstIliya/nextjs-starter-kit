@@ -10,10 +10,11 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { authClient } from "@/lib/auth-client";
-import { Check } from "lucide-react";
+import { ArrowLeft, Check } from "lucide-react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 type SubscriptionDetails = {
   id: string;
@@ -45,6 +46,9 @@ export default function PricingTable({
 }: PricingTableProps) {
   const router = useRouter();
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
+  const hasSubscription =
+    subscriptionDetails.hasSubscription &&
+    subscriptionDetails.subscription?.status === "active";
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -168,7 +172,7 @@ export default function PricingTable({
             {isCurrentPlan(FREE_TIER) ? (
               <div className="w-full space-y-2">
                 <Button
-                  className="w-full min-h-12 text-base"
+                  className="w-full"
                   variant="outline"
                   onClick={handleManageSubscription}
                 >
@@ -184,7 +188,7 @@ export default function PricingTable({
               </div>
             ) : (
               <Button
-                className="w-full min-h-12 text-base"
+                className="w-full"
                 onClick={() => handleCheckout(FREE_TIER, FREE_SLUG)}
               >
                 {isAuthenticated === false
@@ -238,7 +242,7 @@ export default function PricingTable({
             {isCurrentPlan(STARTER_TIER) ? (
               <div className="w-full space-y-2">
                 <Button
-                  className="w-full min-h-12 text-base"
+                  className="w-full"
                   variant="outline"
                   onClick={handleManageSubscription}
                 >
@@ -254,7 +258,7 @@ export default function PricingTable({
               </div>
             ) : (
               <Button
-                className="w-full min-h-12 text-base"
+                className="w-full"
                 onClick={() => handleCheckout(STARTER_TIER, STARTER_SLUG)}
               >
                 {isAuthenticated === false
@@ -267,6 +271,12 @@ export default function PricingTable({
       </div>
 
       <div className="mt-12 text-center">
+        <Button asChild variant="ghost" size="lg" className="min-h-12 text-base m-12 rounded-full">
+          <Link href={hasSubscription ? "/dashboard" : "/"}>
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            {hasSubscription ? "Back to Earth" : "Back to Home"}
+          </Link>
+        </Button>
         <p className="text-muted-foreground">
           Need a custom plan?{" "}
           <span className="text-primary cursor-pointer hover:underline">

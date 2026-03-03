@@ -3,7 +3,6 @@ import { db } from "@/db/drizzle";
 import { subscription } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { headers } from "next/headers";
-import { polarClient } from "@/lib/polar";
 
 export type SubscriptionDetails = {
   id: string;
@@ -42,6 +41,7 @@ export async function getSubscriptionDetails(): Promise<SubscriptionDetailsResul
       .where(eq(subscription.userId, session.user.id));
 
     if (!userSubscriptions.length) {
+<<<<<<< HEAD
       // ── Polar API fallback ──────────────────────────────────────────────────
       // The webhook `onPayload` is called without `await` inside
       // @polar-sh/better-auth, so the DB write can lag behind the user hitting
@@ -128,6 +128,8 @@ export async function getSubscriptionDetails(): Promise<SubscriptionDetailsResul
         // Polar API unavailable — fall through to hasSubscription: false
         console.warn("Polar API fallback failed:", polarError);
       }
+=======
+>>>>>>> parent of b6cbffe (Implement dashboard, pricing, and subscription management with new authentication and agent skills.)
       return { hasSubscription: false };
     }
 
@@ -214,22 +216,22 @@ export async function hasAccessToProduct(productId: string): Promise<boolean> {
 // Helper to get user's current subscription status
 export async function getUserSubscriptionStatus(): Promise<"active" | "canceled" | "expired" | "none"> {
   const result = await getSubscriptionDetails();
-
+  
   if (!result.hasSubscription) {
     return "none";
   }
-
+  
   if (result.subscription?.status === "active") {
     return "active";
   }
-
+  
   if (result.errorType === "CANCELED") {
     return "canceled";
   }
-
+  
   if (result.errorType === "EXPIRED") {
     return "expired";
   }
-
+  
   return "none";
 }
