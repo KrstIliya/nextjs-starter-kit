@@ -36,7 +36,7 @@ function SignUpContent() {
               Join Ablio
             </CardTitle>
             <CardDescription className="text-base mt-2">
-              Create your free account and start playing
+              Create your account and start your free trial
             </CardDescription>
           </CardHeader>
           <CardContent>

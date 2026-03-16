@@ -13,7 +13,7 @@ A comprehensive, production-ready SaaS starter kit built with Next.js 15, featur
 
 ### 💳 Subscription & Billing
 - **Polar.sh** integration for subscription management
-- Two-tier pricing: Starter ($99/month) & Professional ($499/month)
+- Single-tier pricing with free trial (Full Access at $4.99/month)
 - Real-time webhook processing
 - Customer portal for self-service billing
 - Subscription status tracking (active, canceled, expired)

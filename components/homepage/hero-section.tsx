@@ -22,7 +22,7 @@ export default function HeroSection() {
 
         <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
           <CTAButton href="/sign-up" variant="primary">
-            Sign Up for Free
+            Start Your Free Trial
           </CTAButton>
           <CTAButton href="#about" variant="secondary">
             Learn More
