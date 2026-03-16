@@ -10,11 +10,10 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { authClient } from "@/lib/auth-client";
-import { ArrowLeft, Check } from "lucide-react";
+import { Check } from "lucide-react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import Link from "next/link";
 
 type SubscriptionDetails = {
   id: string;
@@ -46,9 +45,6 @@ export default function PricingTable({
 }: PricingTableProps) {
   const router = useRouter();
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
-  const hasSubscription =
-    subscriptionDetails.hasSubscription &&
-    subscriptionDetails.subscription?.status === "active";
 
   useEffect(() => {
     const checkAuth = async () => {
