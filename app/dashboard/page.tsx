@@ -1,3 +1,4 @@
+import DashboardHeader from "@/components/space/planet-header";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
@@ -13,7 +14,8 @@ export default async function Dashboard() {
 
   return (
     <section className="flex flex-col items-center justify-center flex-1 p-6 w-full">
-
+      <DashboardHeader />
+      Dashboard
     </section>
   );
 }

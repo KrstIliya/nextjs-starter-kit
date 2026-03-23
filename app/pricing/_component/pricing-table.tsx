@@ -111,7 +111,7 @@ export default function PricingTable({
   return (
     <section className="flex flex-col items-center justify-center px-4 mb-24 w-full">
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-medium tracking-tight mb-4">
+        <h1 className="text-4xl font-display font-medium tracking-tight mb-4">
           Choose Your Plan
         </h1>
         <p className="text-xl text-muted-foreground">
@@ -128,7 +128,7 @@ export default function PricingTable({
             <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
               <Badge
                 variant="secondary"
-                className="bg-green-100 text-green-800"
+                className="bg-secondary-container text-secondary-foreground hover:bg-secondary-container/80"
               >
                 Current Plan
               </Badge>

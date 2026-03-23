@@ -40,7 +40,7 @@ export default function WhatWeOffer() {
   return (
     <SectionContainer id="services">
       <div className="text-center mb-12">
-        <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+        <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground">
           What We Offer
         </h2>
         <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -54,7 +54,7 @@ export default function WhatWeOffer() {
           return (
             <Card
               key={service.title}
-              className="bg-card border-border/50"
+              className="bg-card"
             >
               <CardContent className="p-6 flex flex-col gap-4">
                 <div className="rounded-xl bg-primary/10 p-3 w-fit">

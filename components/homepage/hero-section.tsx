@@ -6,12 +6,12 @@ export default function HeroSection() {
   return (
     <SectionContainer className="pt-24 md:pt-32 pb-16">
       <div className="text-center max-w-2xl mx-auto">
-        <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-2 text-sm text-primary mb-8">
+        <div className="inline-flex items-center gap-2 rounded-full bg-surface-container-high px-4 py-2 text-sm text-primary mb-8 tracking-wide">
           <Sparkles className="h-4 w-4" />
           <span>Fun games for learning</span>
         </div>
 
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground leading-tight">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold tracking-tight text-foreground leading-tight">
           Learn and Grow with Fun Games
         </h1>
 

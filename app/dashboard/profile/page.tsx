@@ -163,7 +163,7 @@ export default function ProfilePage() {
   return (
     <div className="flex flex-col gap-6 p-6">
       <div>
-        <h1 className="text-3xl font-semibold tracking-tight">Profile</h1>
+        <h1 className="text-3xl font-display font-bold tracking-tight">Profile</h1>
         <p className="text-muted-foreground mt-2">
           Manage your personal information and profile settings
         </p>

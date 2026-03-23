@@ -24,7 +24,7 @@ export default function AboutSection() {
     return (
         <SectionContainer id="about">
             <div className="text-center mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+                <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground">
                     What is Ablio?
                 </h2>
                 <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -39,7 +39,7 @@ export default function AboutSection() {
                     return (
                         <Card
                             key={feature.title}
-                            className="bg-card border-border/50 hover:border-primary/30 transition-colors"
+                            className="bg-card"
                         >
                             <CardContent className="p-6 flex flex-col items-center text-center gap-4">
                                 <div className="rounded-xl bg-primary/10 p-3">

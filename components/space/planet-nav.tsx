@@ -26,10 +26,7 @@ export default function PlanetNav() {
                         asChild
                         variant={isActive ? "default" : "ghost"}
                         size="lg"
-                        className={`min-h-12 px-4 md:px-6 rounded-full ${isActive
-                            ? "bg-primary text-primary-foreground"
-                            : "text-muted-foreground hover:text-foreground"
-                            }`}
+                        className={`min-h-12 px-4 md:px-6 rounded-full ${!isActive && "text-muted-foreground"}`}
                     >
                         <Link href={planet.href} prefetch={true}>
                             <Icon className="h-4 w-4 mr-1.5" />

@@ -9,11 +9,11 @@ const links = [
 
 export default function FooterSection() {
   return (
-    <footer className="border-t border-border/40 bg-card/30 py-12">
+    <footer className="bg-surface-container-lowest py-12">
       <div className="mx-auto max-w-5xl px-6">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 text-lg font-bold text-foreground">
+          <Link href="/" className="flex items-center gap-2 text-lg font-display font-bold text-foreground">
             <Rocket className="h-5 w-5 text-primary" />
             <span>Ablio</span>
           </Link>

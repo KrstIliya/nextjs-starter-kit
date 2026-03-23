@@ -16,12 +16,12 @@ export default function Header() {
     const [open, setOpen] = useState(false);
 
     return (
-        <header className="sticky top-0 z-50 border-b border-border/40 bg-background/80 backdrop-blur-md">
+        <header className="sticky top-0 z-50 bg-surface-bright/60 backdrop-blur-[20px] mb-10">
             <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-3">
                 {/* Logo */}
                 <Link
                     href="/"
-                    className="flex items-center gap-2 text-xl font-bold text-foreground"
+                    className="flex items-center gap-2 text-xl font-display font-bold text-foreground"
                     prefetch={true}
                 >
                     <Rocket className="h-6 w-6 text-primary" />

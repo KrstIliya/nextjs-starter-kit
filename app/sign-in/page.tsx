@@ -25,14 +25,14 @@ function SignInContent() {
   return (
     <PageContainer>
       <div className="flex flex-col justify-center items-center w-full min-h-screen px-6">
-        <Link href="/" className="flex items-center gap-2 text-2xl font-bold text-foreground mb-8">
+        <Link href="/" className="flex items-center gap-2 text-2xl font-display font-bold text-foreground mb-8">
           <Rocket className="h-7 w-7 text-primary" />
           <span>Ablio</span>
         </Link>
 
-        <Card className="max-w-md w-full bg-card border-border/50">
+        <Card className="max-w-md w-full bg-card">
           <CardHeader className="text-center">
-            <CardTitle className="text-xl md:text-2xl">
+            <CardTitle className="text-xl md:text-2xl font-display font-bold">
               Welcome Back
             </CardTitle>
             <CardDescription className="text-base mt-2">

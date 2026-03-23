@@ -1,7 +1,18 @@
 import { Toaster } from "@/components/ui/sonner";
 import type { Metadata } from "next";
+import { Plus_Jakarta_Sans, Lexend } from "next/font/google";
 import { ThemeProvider } from "../components/provider";
 import "./globals.css";
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  variable: "--font-display",
+});
+
+const lexend = Lexend({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
 import { Analytics } from "@vercel/analytics/next";
 export const metadata: Metadata = {
   title: "Ablio — Learn and Grow with Fun Games",
@@ -24,7 +35,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="antialiased">
+      <body className={`${lexend.variable} ${plusJakartaSans.variable} font-sans antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

@@ -14,7 +14,7 @@ export default function TestimonialCard({
     description,
 }: TestimonialCardProps) {
     return (
-        <Card className="bg-card border-border/50 h-full">
+        <Card className="bg-card h-full">
             <CardContent className="p-6 flex flex-col gap-4">
                 {/* Star Rating */}
                 <div className="flex gap-1" aria-label={`${rating} out of 5 stars`}>
