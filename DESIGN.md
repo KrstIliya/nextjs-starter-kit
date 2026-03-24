@@ -24,7 +24,7 @@ Treat the UI as a series of physical layers. We use a "Higher is Closer" logic:
 
 ### Signature Textures: Glass & Gradients
 To provide "soul," we avoid flat color blocks.
-- **The "Pulse" Gradient:** For primary actions, transition from `primary` (#dbc90a) to `primary-container` (#7e7300). This subtle shift guides the eye without the "vibration" of a single flat neon.
+- **The "Pulse" Gradient:** For primary actions, transition from `primary` (#5971cf) to `primary-container` (#3d456a). This subtle shift guides the eye without the "vibration" of a single flat neon.
 - **Atmospheric Glass:** For overlays or navigation bars, use `surface-bright` (#37374c) at 60% opacity with a `20px` backdrop blur. This allows the "nebula" colors to bleed through, making the interface feel integrated.
 
 ---
@@ -50,7 +50,7 @@ We eschew traditional Material Design shadows in favor of **Tonal Stacking**.
 ## 5. Components
 
 ### Primary Buttons (The "Beacon")
-- **Style:** Use the `primary` (#dbc90a) to `primary-container` gradient.
+- **Style:** Use the `primary` (#5971cf) to `primary-container` gradient.
 - **Geometry:** Height: `min 48px` (ideally 56px). Radius: `rounded-md` (1.5rem).
 - **Rule:** Every button must contain a `24px` icon on the leading edge to provide a non-textual cue for the action.
 
@@ -60,12 +60,12 @@ We eschew traditional Material Design shadows in favor of **Tonal Stacking**.
 - **Interaction:** On hover/touch, the background shifts to `surface-bright` (#37374c). No movement or lifting.
 
 ### Focus Chips
-- **Style:** Large, pill-shaped (`rounded-full`) targets using `secondary-container` (#00bacd).
+- **Style:** Large, pill-shaped (`rounded-full`) targets using `secondary-container` (#29304c).
 - **Context:** Use for selecting moods or activities. These replace checkboxes to provide a larger, more tactile "hit" area.
 
 ### Progress Indicators (The "Journey")
 - **Style:** Avoid thin lines. Use a thick `8px` bar with `rounded-full` caps.
-- **Colors:** Background `surface-container-highest`; Fill `tertiary` (#f8acff).
+- **Colors:** Background `surface-container-highest`; Fill `tertiary` (#7b3200).
 
 ### Soft Dividers
 - **Strict Rule:** Never use a line. Use `spacing-10` (3.5rem) of empty space or a subtle change in surface tone to separate logical groups of information.

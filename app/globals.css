@@ -68,10 +68,10 @@
     --surface-container-highest: #323347;
     --surface-bright: #37374c;
     
-    --primary: #dbc90a;
-    --primary-container: #7e7300;
-    --secondary-container: #00bacd;
-    --tertiary: #f8acff;
+    --primary: #5971cf;
+    --primary-container: #3d456a;
+    --secondary-container: #29304c;
+    --tertiary: #7b3200;
     --on-surface: #e1e0fb;
     --outline-variant: #454651;
 
@@ -86,7 +86,7 @@
     --popover: var(--surface-container-high);
     --popover-foreground: var(--on-surface);
 
-    --primary-foreground: #363100;
+    --primary-foreground: #ffffff;
     
     --secondary: #45d8ed;
     --secondary-foreground: #00363d;
