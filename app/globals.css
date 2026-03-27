@@ -158,3 +158,37 @@
         radial-gradient(ellipse at 80% 100%, oklch(0.18 0.05 280 / 0.4) 0%, transparent 50%),
         oklch(0.14 0.02 260);
 }
+
+/* Profile page background */
+.profile-page-bg {
+    background:
+        radial-gradient(ellipse at 30% 0%, oklch(0.18 0.05 270 / 0.5) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 100%, oklch(0.16 0.04 280 / 0.3) 0%, transparent 50%),
+        #0a0b1a;
+}
+
+/* Profile page card styling */
+.profile-card {
+    background: rgba(25, 26, 45, 0.6);
+    border: 1px solid rgba(69, 70, 81, 0.4);
+    backdrop-filter: blur(12px);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-card:hover {
+    border-color: rgba(69, 70, 81, 0.7);
+    box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Profile input styling */
+.profile-input {
+    background: rgba(15, 16, 31, 0.7) !important;
+    border: 1px solid rgba(69, 70, 81, 0.5) !important;
+    color: var(--on-surface);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.profile-input:focus {
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 0 2px rgba(89, 113, 207, 0.15) !important;
+}

@@ -1,7 +1,7 @@
 "use client";
 
 import UserProfile from "@/components/user-profile";
-import { Home, Gamepad2, Info, User } from "lucide-react";
+import { Home, User } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
@@ -10,9 +10,7 @@ export default function DashboardHeader() {
     const pathname = usePathname();
 
     const navItems = [
-        { label: "Home", href: "/dashboard", icon: Home },
-        { label: "Games", href: "#", icon: Gamepad2 },
-        { label: "About", href: "#", icon: Info },
+        { label: "Journeys", href: "/dashboard", icon: Home },
         { label: "Profile", href: "/dashboard/profile", icon: User },
     ];
 

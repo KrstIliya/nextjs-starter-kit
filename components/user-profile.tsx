@@ -111,25 +111,19 @@ export default function UserProfile({ mini }: { mini?: boolean }) {
           )}
         </div>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56">
-        <DropdownMenuLabel>My Account</DropdownMenuLabel>
-        <DropdownMenuSeparator />
+      <DropdownMenuContent className="w-56 bg-surface-container-high border-outline-variant/50 rounded-sm shadow-[0_8px_32px_rgba(0,0,0,0.4)] backdrop-blur-xl p-4">
+        <DropdownMenuLabel className="text-foreground/80 font-display">My Account</DropdownMenuLabel>
+        <DropdownMenuSeparator className="bg-outline-variant/30" />
         <DropdownMenuGroup>
           <Link href="/dashboard/profile">
-            <DropdownMenuItem>
+            <DropdownMenuItem className="rounded-sm focus:bg-surface-bright focus:text-foreground cursor-pointer">
               Profile
               <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
             </DropdownMenuItem>
           </Link>
-          <Link href="/dashboard/billing">
-            <DropdownMenuItem>
-              Billing
-              <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
-            </DropdownMenuItem>
-          </Link>
         </DropdownMenuGroup>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={handleSignOut}>
+        <DropdownMenuSeparator className="bg-outline-variant/30" />
+        <DropdownMenuItem onClick={handleSignOut} className="rounded-sm focus:bg-destructive/10 focus:text-destructive cursor-pointer">
           Log out
           <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
         </DropdownMenuItem>
