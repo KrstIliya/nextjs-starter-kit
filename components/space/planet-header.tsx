@@ -3,22 +3,30 @@
 import UserProfile from "@/components/user-profile";
 import { Home, User } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useParams } from "next/navigation";
 import { cn } from "@/lib/utils";
+import LanguageSwitcher from "@/components/language-switcher";
 
-export default function DashboardHeader() {
+export default function DashboardHeader({ lang: langProp }: { lang?: string }) {
     const pathname = usePathname();
+    const params = useParams();
+    const lang = langProp || (params.lang as string) || "sr";
+
+    const dict = {
+        journeys: lang === "sr" ? "Putovanja" : "Journeys",
+        profile: lang === "sr" ? "Profil" : "Profile",
+    };
 
     const navItems = [
-        { label: "Journeys", href: "/dashboard", icon: Home },
-        { label: "Profile", href: "/dashboard/profile", icon: User },
+        { label: dict.journeys, href: `/${lang}/dashboard`, icon: Home },
+        { label: dict.profile, href: `/${lang}/dashboard/profile`, icon: User },
     ];
 
     return (
         <header className="flex items-center justify-between px-8 py-5 bg-transparent w-full">
             {/* Logo */}
             <div className="flex items-center w-48">
-                <Link href="/" className="text-2xl font-display font-bold text-primary tracking-tight">
+                <Link href={`/${lang}`} className="text-2xl font-display font-bold text-primary tracking-tight">
                     Ablio
                 </Link>
             </div>
@@ -26,7 +34,7 @@ export default function DashboardHeader() {
             {/* Center Nav */}
             <nav className="hidden md:flex flex-1 items-center justify-center gap-10" aria-label="Main navigation">
                 {navItems.map((item) => {
-                    const isActive = pathname === item.href || (item.label === "Home" && pathname.startsWith("/dashboard/journeys"));
+                    const isActive = pathname === item.href || (item.label === dict.journeys && pathname.startsWith(`/${lang}/dashboard/journeys`));
                     const Icon = item.icon;
                     return (
                         <Link
@@ -47,10 +55,11 @@ export default function DashboardHeader() {
                 })}
             </nav>
 
-            {/* Right Profile Widget */}
-            <div className="flex items-center w-48 justify-end">
+            {/* Right Profile Widget + Language Switcher */}
+            <div className="flex items-center w-48 justify-end gap-3">
+                <LanguageSwitcher />
                 <div className="text-primary hover:text-primary/80 transition-colors">
-                    <UserProfile mini={true} />
+                    <UserProfile mini={true} lang={lang} />
                 </div>
             </div>
         </header>

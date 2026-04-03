@@ -12,7 +12,7 @@ import PageContainer from "@/components/space/page-container";
 import { authClient } from "@/lib/auth-client";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useParams } from "next/navigation";
 import { Suspense, useState } from "react";
 import { toast } from "sonner";
 import { Rocket } from "lucide-react";
@@ -20,12 +20,27 @@ import { Rocket } from "lucide-react";
 function SignInContent() {
   const [loading, setLoading] = useState(false);
   const searchParams = useSearchParams();
+  const params = useParams();
+  const lang = (params.lang as string) || "sr";
   const returnTo = searchParams.get("returnTo");
+
+  // We read dict from a data attribute on the wrapper div
+  // For client components, we pass minimal translations via the URL or use inline approach
+  const dict = {
+    title: lang === "sr" ? "Dobrodošli nazad" : "Welcome Back",
+    description: lang === "sr" ? "Prijavite se da nastavite sa igrama" : "Sign in to continue playing your games",
+    googleButton: lang === "sr" ? "Prijavite se putem Google-a" : "Sign in with Google",
+    agreement: lang === "sr" ? "Prijavljivanjem se slažete sa našim" : "By signing in, you agree to our",
+    termsOfService: lang === "sr" ? "Uslovima korišćenja" : "Terms of Service",
+    and: lang === "sr" ? "i" : "and",
+    privacyPolicy: lang === "sr" ? "Politikom privatnosti" : "Privacy Policy",
+    errorToast: lang === "sr" ? "Ups, nešto je pošlo po zlu" : "Oops, something went wrong",
+  };
 
   return (
     <PageContainer>
       <div className="flex flex-col justify-center items-center w-full min-h-screen px-6">
-        <Link href="/" className="flex items-center gap-2 text-2xl font-display font-bold text-foreground mb-8">
+        <Link href={`/${lang}`} className="flex items-center gap-2 text-2xl font-display font-bold text-foreground mb-8">
           <Rocket className="h-7 w-7 text-primary" />
           <span>Ablio</span>
         </Link>
@@ -33,10 +48,10 @@ function SignInContent() {
         <Card className="max-w-md w-full bg-card">
           <CardHeader className="text-center">
             <CardTitle className="text-xl md:text-2xl font-display font-bold">
-              Welcome Back
+              {dict.title}
             </CardTitle>
             <CardDescription className="text-base mt-2">
-              Sign in to continue playing your games
+              {dict.description}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -56,7 +71,7 @@ function SignInContent() {
                       await authClient.signIn.social(
                         {
                           provider: "google",
-                          callbackURL: returnTo || "/dashboard",
+                          callbackURL: returnTo || `/${lang}/dashboard`,
                         },
                         {
                           onRequest: () => {
@@ -74,7 +89,7 @@ function SignInContent() {
                     } catch (error) {
                       setLoading(false);
                       console.error("Authentication error:", error);
-                      toast.error("Oops, something went wrong", {
+                      toast.error(dict.errorToast, {
                         duration: 5000,
                       });
                     }
@@ -103,26 +118,26 @@ function SignInContent() {
                       d="M130.55 50.479c24.514 0 41.05 10.589 50.479 19.438l36.844-35.974C195.245 12.91 165.798 0 130.55 0C79.49 0 35.393 29.301 13.925 71.947l42.211 32.783c10.59-31.477 39.891-54.251 74.414-54.251"
                     ></path>
                   </svg>
-                  Sign in with Google
+                  {dict.googleButton}
                 </Button>
               </div>
             </div>
           </CardContent>
         </Card>
         <p className="mt-6 text-xs text-center text-muted-foreground max-w-md">
-          By signing in, you agree to our{" "}
+          {dict.agreement}{" "}
           <Link
-            href="/terms-of-service"
+            href={`/${lang}/terms-of-service`}
             className="underline hover:text-foreground transition-colors"
           >
-            Terms of Service
+            {dict.termsOfService}
           </Link>{" "}
-          and{" "}
+          {dict.and}{" "}
           <Link
-            href="/privacy-policy"
+            href={`/${lang}/privacy-policy`}
             className="underline hover:text-foreground transition-colors"
           >
-            Privacy Policy
+            {dict.privacyPolicy}
           </Link>
         </p>
       </div>

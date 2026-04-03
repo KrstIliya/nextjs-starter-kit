@@ -26,10 +26,11 @@ import {
   Rocket,
 } from "lucide-react";
 import Link from "next/link";
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter, usePathname, useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
+import LanguageSwitcher from "@/components/language-switcher";
 
 interface UserData {
   id: string;
@@ -79,10 +80,50 @@ export default function ProfilePage() {
 
   const router = useRouter();
   const pathname = usePathname();
+  const params = useParams();
+  const lang = (params.lang as string) || "sr";
+
+  const dict = {
+    journeys: lang === "sr" ? "Putovanja" : "Journeys",
+    profile: lang === "sr" ? "Profil" : "Profile",
+    explorerLevel: lang === "sr" ? "Istraživač nivo 12" : "Explorer Level 12",
+    brightStudent: lang === "sr" ? "Sjajni učenik" : "Bright Student",
+    gameMaster: lang === "sr" ? "Majstor igara" : "Game Master",
+    uploading: lang === "sr" ? "Otpremanje..." : "Uploading...",
+    savePhoto: lang === "sr" ? "Sačuvaj sliku" : "Save Photo",
+    cancel: lang === "sr" ? "Otkaži" : "Cancel",
+    settings: lang === "sr" ? "Podešavanja" : "Settings",
+    gameMusic: lang === "sr" ? "Muzika u igri" : "Game Music",
+    soundtrack: lang === "sr" ? "Zvučni zapis" : "Soundtrack",
+    soundEffects: lang === "sr" ? "Zvučni efekti" : "Sound Effects",
+    interactions: lang === "sr" ? "Interakcije" : "Interactions",
+    personalDetails: lang === "sr" ? "Lični podaci" : "Personal Details",
+    emailAddress: lang === "sr" ? "Email adresa" : "Email Address",
+    fullName: lang === "sr" ? "Puno ime" : "Full Name",
+    fullNamePlaceholder: lang === "sr" ? "Unesite vaše puno ime" : "Enter your full name",
+    preferredLanguage: lang === "sr" ? "Željeni jezik" : "Preferred Language",
+    selectLanguage: lang === "sr" ? "Izaberite jezik" : "Select language",
+    billing: lang === "sr" ? "Naplata i pretplata" : "Billing & Subscription",
+    manageSubscription: lang === "sr" ? "Upravljaj pretplatom" : "Manage Subscription",
+    paid: lang === "sr" ? "Plaćeno" : "Paid",
+    canceled: lang === "sr" ? "Otkazano" : "Canceled",
+    unableToLoadBilling: lang === "sr" ? "Nije moguće učitati istoriju naplate." : "Unable to load billing history.",
+    noOrdersYet: lang === "sr" ? "Još nema narudžbina. Vaša istorija naplate će se pojaviti ovde." : "No orders yet. Your billing history will appear here.",
+    logOut: lang === "sr" ? "Odjavi se" : "Log Out",
+    saveChanges: lang === "sr" ? "Sačuvaj promene" : "Save Changes",
+    profileUpdated: lang === "sr" ? "Profil je uspešno ažuriran" : "Profile updated successfully",
+    profileUpdateFailed: lang === "sr" ? "Ažuriranje profila nije uspelo" : "Failed to update profile",
+    profilePictureUpdated: lang === "sr" ? "Slika profila je uspešno ažurirana" : "Profile picture updated successfully",
+    profilePictureFailed: lang === "sr" ? "Otpremanje slike profila nije uspelo" : "Failed to upload profile picture",
+    terms: lang === "sr" ? "Uslovi" : "Terms",
+    privacy: lang === "sr" ? "Privatnost" : "Privacy",
+    footerCopyright: lang === "sr" ? `© ${new Date().getFullYear()} Ablio. Siguran prostor za sve.` : `© ${new Date().getFullYear()} Ablio. A safe space for everyone.`,
+    subscription: lang === "sr" ? "Pretplata" : "Subscription",
+  };
 
   const navItems = [
-    { label: "Journeys", href: "/dashboard" },
-    { label: "Profile", href: "/dashboard/profile" },
+    { label: dict.journeys, href: `/${lang}/dashboard` },
+    { label: dict.profile, href: `/${lang}/dashboard/profile` },
   ];
 
   useEffect(() => {
@@ -118,9 +159,9 @@ export default function ProfilePage() {
   const handleUpdateProfile = async () => {
     try {
       await authClient.updateUser({ name });
-      toast.success("Profile updated successfully");
+      toast.success(dict.profileUpdated);
     } catch {
-      toast.error("Failed to update profile");
+      toast.error(dict.profileUpdateFailed);
     }
   };
 
@@ -150,12 +191,12 @@ export default function ProfilePage() {
         setUser((prev) => (prev ? { ...prev, image: url } : null));
         setImagePreview(null);
         setProfileImage(null);
-        toast.success("Profile picture updated successfully");
+        toast.success(dict.profilePictureUpdated);
       } else {
         throw new Error("Upload failed");
       }
     } catch {
-      toast.error("Failed to upload profile picture");
+      toast.error(dict.profilePictureFailed);
     } finally {
       setUploadingImage(false);
     }
@@ -164,7 +205,7 @@ export default function ProfilePage() {
   const handleSignOut = async () => {
     await authClient.signOut({
       fetchOptions: {
-        onSuccess: () => router.push("/sign-in"),
+        onSuccess: () => router.push(`/${lang}/sign-in`),
       },
     });
   };
@@ -224,7 +265,7 @@ export default function ProfilePage() {
       {/* ── HEADER ────────────────────────────────────────────────── */}
       <header className="flex items-center justify-between px-8 py-5 w-full">
         <Link
-          href="/"
+          href={`/${lang}`}
           className="text-2xl font-display font-bold text-primary tracking-tight"
         >
           Ablio
@@ -256,15 +297,18 @@ export default function ProfilePage() {
           })}
         </nav>
 
-        <Avatar className="h-9 w-9 ring-2 ring-primary/30 cursor-pointer">
-          <AvatarImage src={user?.image || ""} alt="User Avatar" />
-          <AvatarFallback className="text-xs bg-surface-container-high text-foreground">
-            {name
-              .split(" ")
-              .map((n) => n[0])
-              .join("")}
-          </AvatarFallback>
-        </Avatar>
+        <div className="flex items-center gap-3">
+          <LanguageSwitcher />
+          <Avatar className="h-9 w-9 ring-2 ring-primary/30 cursor-pointer">
+            <AvatarImage src={user?.image || ""} alt="User Avatar" />
+            <AvatarFallback className="text-xs bg-surface-container-high text-foreground">
+              {name
+                .split(" ")
+                .map((n) => n[0])
+                .join("")}
+            </AvatarFallback>
+          </Avatar>
+        </div>
       </header>
 
       {/* ── MAIN CONTENT ──────────────────────────────────────────── */}
@@ -306,14 +350,14 @@ export default function ProfilePage() {
               {name || "User"}
             </h1>
             <p className="text-muted-foreground text-sm mt-0.5 mb-3">
-              Explorer Level 12
+              {dict.explorerLevel}
             </p>
             <div className="flex gap-2 flex-wrap">
               <Badge className="bg-secondary/20 text-secondary border-secondary/30 text-xs font-semibold px-3 py-0.5 rounded-full">
-                Bright Student
+                {dict.brightStudent}
               </Badge>
               <Badge className="bg-tertiary/20 text-[#ff9d4d] border-tertiary/30 text-xs font-semibold px-3 py-0.5 rounded-full">
-                Game Master
+                {dict.gameMaster}
               </Badge>
             </div>
 
@@ -326,7 +370,7 @@ export default function ProfilePage() {
                   disabled={uploadingImage}
                   className="text-xs"
                 >
-                  {uploadingImage ? "Uploading..." : "Save Photo"}
+                  {uploadingImage ? dict.uploading : dict.savePhoto}
                 </Button>
                 <Button
                   variant="outline"
@@ -337,7 +381,7 @@ export default function ProfilePage() {
                   }}
                   className="text-xs"
                 >
-                  Cancel
+                  {dict.cancel}
                 </Button>
               </div>
             )}
@@ -347,7 +391,7 @@ export default function ProfilePage() {
         {/* ── SETTINGS SECTION ──────────────────────────────────── */}
         <section id="settings-section" className="mb-8">
           <h2 className="text-lg font-display font-semibold text-primary mb-4 tracking-tight">
-            Settings
+            {dict.settings}
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -359,10 +403,10 @@ export default function ProfilePage() {
                 </div>
                 <div>
                   <p className="font-semibold text-foreground text-sm">
-                    Game Music
+                    {dict.gameMusic}
                   </p>
                   <p className="text-muted-foreground text-xs mt-0.5">
-                    Soundtrack
+                    {dict.soundtrack}
                   </p>
                 </div>
               </div>
@@ -382,10 +426,10 @@ export default function ProfilePage() {
                 </div>
                 <div>
                   <p className="font-semibold text-foreground text-sm">
-                    Sound Effects
+                    {dict.soundEffects}
                   </p>
                   <p className="text-muted-foreground text-xs mt-0.5">
-                    Interactions
+                    {dict.interactions}
                   </p>
                 </div>
               </div>
@@ -404,7 +448,7 @@ export default function ProfilePage() {
             <div className="flex items-center gap-2 mb-6">
               <User className="h-5 w-5 text-foreground" />
               <h3 className="font-display font-bold text-foreground text-base">
-                Personal Details
+                {dict.personalDetails}
               </h3>
             </div>
 
@@ -415,7 +459,7 @@ export default function ProfilePage() {
                   htmlFor="email-address"
                   className="text-xs text-muted-foreground uppercase tracking-wider font-medium"
                 >
-                  Email Address
+                  {dict.emailAddress}
                 </Label>
                 <Input
                   id="email-address"
@@ -433,13 +477,13 @@ export default function ProfilePage() {
                   htmlFor="full-name"
                   className="text-xs text-muted-foreground uppercase tracking-wider font-medium"
                 >
-                  Full Name
+                  {dict.fullName}
                 </Label>
                 <Input
                   id="full-name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  placeholder="Enter your full name"
+                  placeholder={dict.fullNamePlaceholder}
                   className="profile-input h-12 rounded-xl text-sm"
                 />
               </div>
@@ -450,23 +494,18 @@ export default function ProfilePage() {
                   htmlFor="preferred-language"
                   className="text-xs text-muted-foreground uppercase tracking-wider font-medium"
                 >
-                  Preferred Language
+                  {dict.preferredLanguage}
                 </Label>
                 <Select value={language} onValueChange={setLanguage}>
                   <SelectTrigger
                     id="preferred-language"
                     className="profile-input h-12 rounded-xl text-sm w-full"
                   >
-                    <SelectValue placeholder="Select language" />
+                    <SelectValue placeholder={dict.selectLanguage} />
                   </SelectTrigger>
                   <SelectContent className="bg-surface-container-high border-outline-variant">
+                    <SelectItem value="sr">Srpski</SelectItem>
                     <SelectItem value="en-us">English (US)</SelectItem>
-                    <SelectItem value="en-gb">English (UK)</SelectItem>
-                    <SelectItem value="nl">Dutch</SelectItem>
-                    <SelectItem value="ar">Arabic</SelectItem>
-                    <SelectItem value="fr">French</SelectItem>
-                    <SelectItem value="de">German</SelectItem>
-                    <SelectItem value="es">Spanish</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -491,7 +530,7 @@ export default function ProfilePage() {
                   <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
                   <line x1="1" y1="10" x2="23" y2="10" />
                 </svg>
-                Billing & Subscription
+                {dict.billing}
               </h3>
               <Button
                 id="manage-subscription-btn"
@@ -508,7 +547,7 @@ export default function ProfilePage() {
                 className="text-xs gap-1.5"
               >
                 <ExternalLink className="h-3.5 w-3.5" />
-                Manage Subscription
+                {dict.manageSubscription}
               </Button>
             </div>
 
@@ -521,10 +560,10 @@ export default function ProfilePage() {
                   >
                     <div>
                       <p className="text-sm font-medium text-foreground">
-                        {order.product?.name || "Subscription"}
+                        {order.product?.name || dict.subscription}
                       </p>
                       <p className="text-xs text-muted-foreground">
-                        {new Date(order.createdAt).toLocaleDateString("en-US", {
+                        {new Date(order.createdAt).toLocaleDateString(lang === "sr" ? "sr-RS" : "en-US", {
                           year: "numeric",
                           month: "short",
                           day: "numeric",
@@ -537,14 +576,14 @@ export default function ProfilePage() {
                       </span>
                       {order.subscription?.status === "paid" ? (
                         <Badge className="bg-green-900/30 text-green-300 text-[10px] font-semibold px-2">
-                          Paid
+                          {dict.paid}
                         </Badge>
                       ) : order.subscription?.status === "canceled" ? (
                         <Badge
                           variant="destructive"
                           className="text-[10px] font-semibold px-2"
                         >
-                          Canceled
+                          {dict.canceled}
                         </Badge>
                       ) : (
                         <Badge
@@ -562,8 +601,8 @@ export default function ProfilePage() {
               <div className="text-center py-6">
                 <p className="text-sm text-muted-foreground">
                   {orders === null
-                    ? "Unable to load billing history."
-                    : "No orders yet. Your billing history will appear here."}
+                    ? dict.unableToLoadBilling
+                    : dict.noOrdersYet}
                 </p>
               </div>
             )}
@@ -582,7 +621,7 @@ export default function ProfilePage() {
             className="flex-1 h-14 rounded-full text-base font-semibold transition-all gap-2"
           >
             <LogOut className="h-5 w-5" />
-            Log Out
+            {dict.logOut}
           </Button>
 
           <Button
@@ -591,7 +630,7 @@ export default function ProfilePage() {
             className="flex-1 h-14 rounded-full text-base font-semibold transition-all gap-2"
           >
             <Save className="h-5 w-5" />
-            Save Changes
+            {dict.saveChanges}
           </Button>
         </div>
       </main>
@@ -599,7 +638,7 @@ export default function ProfilePage() {
       {/* ── FOOTER ────────────────────────────────────────────────── */}
       <footer className="py-8 text-center border-t border-outline-variant/30">
         <Link
-          href="/"
+          href={`/${lang}`}
           className="inline-flex items-center gap-2 text-lg font-display font-bold text-primary mb-3"
         >
           <Rocket className="h-4 w-4" />
@@ -607,20 +646,20 @@ export default function ProfilePage() {
         </Link>
         <div className="flex items-center justify-center gap-6 mb-3">
           <Link
-            href="/terms-of-service"
+            href={`/${lang}/terms-of-service`}
             className="text-muted-foreground hover:text-foreground text-xs transition-colors"
           >
-            Terms
+            {dict.terms}
           </Link>
           <Link
-            href="/privacy-policy"
+            href={`/${lang}/privacy-policy`}
             className="text-muted-foreground hover:text-foreground text-xs transition-colors"
           >
-            Privacy
+            {dict.privacy}
           </Link>
         </div>
         <p className="text-muted-foreground/60 text-xs">
-          © {new Date().getFullYear()} Ablio. A safe space for everyone.
+          {dict.footerCopyright}
         </p>
       </footer>
     </div>

@@ -36,12 +36,35 @@ type SubscriptionDetailsResult = {
   errorType?: "CANCELED" | "EXPIRED" | "GENERAL";
 };
 
+interface PricingDict {
+  title: string;
+  description: string;
+  currentPlan: string;
+  planName: string;
+  planDescription: string;
+  perMonth: string;
+  features: string[];
+  manageSubscription: string;
+  expires: string;
+  renews: string;
+  signInToGetStarted: string;
+  getStarted: string;
+  customPlan: string;
+  contactUs: string;
+  checkoutFailed: string;
+  portalFailed: string;
+}
+
 interface PricingTableProps {
   subscriptionDetails: SubscriptionDetailsResult;
+  dict: PricingDict;
+  lang: string;
 }
 
 export default function PricingTable({
   subscriptionDetails,
+  dict,
+  lang,
 }: PricingTableProps) {
   const router = useRouter();
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
@@ -60,7 +83,7 @@ export default function PricingTable({
 
   const handleCheckout = async (productId: string, slug: string) => {
     if (isAuthenticated === false) {
-      router.push("/sign-in");
+      router.push(`/${lang}/sign-in`);
       return;
     }
 
@@ -71,8 +94,7 @@ export default function PricingTable({
       });
     } catch (error) {
       console.error("Checkout failed:", error);
-      // TODO: Add user-facing error notification
-      toast.error("Oops, something went wrong");
+      toast.error(dict.checkoutFailed);
     }
   };
 
@@ -81,7 +103,7 @@ export default function PricingTable({
       await authClient.customer.portal();
     } catch (error) {
       console.error("Failed to open customer portal:", error);
-      toast.error("Failed to open subscription management");
+      toast.error(dict.portalFailed);
     }
   };
 
@@ -101,7 +123,7 @@ export default function PricingTable({
   };
 
   const formatDate = (date: Date) => {
-    return new Date(date).toLocaleDateString("en-US", {
+    return new Date(date).toLocaleDateString(lang === "sr" ? "sr-RS" : "en-US", {
       year: "numeric",
       month: "long",
       day: "numeric",
@@ -112,16 +134,14 @@ export default function PricingTable({
     <section className="flex flex-col items-center justify-center px-4 mb-24 w-full">
       <div className="text-center mb-12">
         <h1 className="text-4xl font-display font-medium tracking-tight mb-4">
-          Choose Your Plan
+          {dict.title}
         </h1>
         <p className="text-xl text-muted-foreground">
-          Start your free trial and explore all that Ablio has to offer.
+          {dict.description}
         </p>
       </div>
 
       <div className="flex justify-center max-w-4xl w-full">
-
-
         {/* Starter Tier */}
         <Card className="relative h-fit w-1/2">
           {isCurrentPlan(STARTER_TIER) && (
@@ -130,35 +150,25 @@ export default function PricingTable({
                 variant="secondary"
                 className="bg-secondary-container text-secondary-foreground hover:bg-secondary-container/80"
               >
-                Current Plan
+                {dict.currentPlan}
               </Badge>
             </div>
           )}
           <CardHeader>
-            <CardTitle className="text-2xl">Advanced Engines</CardTitle>
-            <CardDescription>Perfect for exploring the solar system</CardDescription>
+            <CardTitle className="text-2xl">{dict.planName}</CardTitle>
+            <CardDescription>{dict.planDescription}</CardDescription>
             <div className="mt-4">
               <span className="text-4xl font-bold">$4.99</span>
-              <span className="text-muted-foreground">/month</span>
+              <span className="text-muted-foreground">{dict.perMonth}</span>
             </div>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="flex items-center gap-3">
-              <Check className="h-5 w-5 text-green-500" />
-              <span>Access to all planets</span>
-            </div>
-            <div className="flex items-center gap-3">
-              <Check className="h-5 w-5 text-green-500" />
-              <span>10GB Storage</span>
-            </div>
-            <div className="flex items-center gap-3">
-              <Check className="h-5 w-5 text-green-500" />
-              <span>1 Team Member</span>
-            </div>
-            <div className="flex items-center gap-3">
-              <Check className="h-5 w-5 text-green-500" />
-              <span>Email Support</span>
-            </div>
+            {dict.features.map((feature) => (
+              <div key={feature} className="flex items-center gap-3">
+                <Check className="h-5 w-5 text-green-500" />
+                <span>{feature}</span>
+              </div>
+            ))}
           </CardContent>
           <CardFooter>
             {isCurrentPlan(STARTER_TIER) ? (
@@ -168,13 +178,13 @@ export default function PricingTable({
                   variant="outline"
                   onClick={handleManageSubscription}
                 >
-                  Manage Subscription
+                  {dict.manageSubscription}
                 </Button>
                 {subscriptionDetails.subscription && (
                   <p className="text-sm text-muted-foreground text-center">
                     {subscriptionDetails.subscription.cancelAtPeriodEnd
-                      ? `Expires ${formatDate(subscriptionDetails.subscription.currentPeriodEnd)}`
-                      : `Renews ${formatDate(subscriptionDetails.subscription.currentPeriodEnd)}`}
+                      ? dict.expires.replace("{date}", formatDate(subscriptionDetails.subscription.currentPeriodEnd))
+                      : dict.renews.replace("{date}", formatDate(subscriptionDetails.subscription.currentPeriodEnd))}
                   </p>
                 )}
               </div>
@@ -184,8 +194,8 @@ export default function PricingTable({
                 onClick={() => handleCheckout(STARTER_TIER, STARTER_SLUG)}
               >
                 {isAuthenticated === false
-                  ? "Sign In to Get Started"
-                  : "Get Started"}
+                  ? dict.signInToGetStarted
+                  : dict.getStarted}
               </Button>
             )}
           </CardFooter>
@@ -194,9 +204,9 @@ export default function PricingTable({
 
       <div className="mt-12 text-center">
         <p className="text-muted-foreground">
-          Need a custom plan?{" "}
+          {dict.customPlan}{" "}
           <span className="text-primary cursor-pointer hover:underline">
-            Contact us
+            {dict.contactUs}
           </span>
         </p>
       </div>

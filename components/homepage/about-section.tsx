@@ -2,40 +2,34 @@ import SectionContainer from "@/components/space/section-container";
 import { Card, CardContent } from "@/components/ui/card";
 import { Brain, Gamepad2, TrendingUp } from "lucide-react";
 
-const features = [
-    {
-        icon: Brain,
-        title: "Brain Training",
-        description: "Games that help you think faster and remember better.",
-    },
-    {
-        icon: Gamepad2,
-        title: "Fun Games",
-        description: "Play colorful games that are easy to understand and enjoy.",
-    },
-    {
-        icon: TrendingUp,
-        title: "Track Your Progress",
-        description: "See how much you have improved over time with simple charts.",
-    },
-];
+const featureIcons = [Brain, Gamepad2, TrendingUp];
 
-export default function AboutSection() {
+interface AboutFeature {
+    title: string;
+    description: string;
+}
+
+interface AboutDict {
+    title: string;
+    description: string;
+    features: AboutFeature[];
+}
+
+export default function AboutSection({ dict }: { dict: AboutDict }) {
     return (
         <SectionContainer id="about">
             <div className="text-center mb-12">
                 <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground">
-                    What is Ablio?
+                    {dict.title}
                 </h2>
                 <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-                    Ablio is a fun platform that helps you build your thinking skills.
-                    We use simple games to make learning feel like play.
+                    {dict.description}
                 </p>
             </div>
 
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {features.map((feature) => {
-                    const Icon = feature.icon;
+                {dict.features.map((feature, index) => {
+                    const Icon = featureIcons[index];
                     return (
                         <Card
                             key={feature.title}

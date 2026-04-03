@@ -1,0 +1,219 @@
+{
+  "metadata": {
+    "title": "Ablio — Learn and Grow with Fun Games",
+    "description": "Ablio helps improve cognitive and mental abilities through interactive games designed for people with Down Syndrome."
+  },
+  "header": {
+    "about": "About",
+    "services": "Services",
+    "pricing": "Pricing",
+    "signIn": "Sign In",
+    "signUp": "Sign Up"
+  },
+  "hero": {
+    "badge": "Fun games for learning",
+    "title": "Learn and Grow with Fun Games",
+    "description": "Ablio helps you build your brain power through colorful, easy-to-play games. Made for you, at your own speed.",
+    "ctaPrimary": "Start Your Free Trial",
+    "ctaSecondary": "Learn More"
+  },
+  "about": {
+    "title": "What is Ablio?",
+    "description": "Ablio is a fun platform that helps you build your thinking skills. We use simple games to make learning feel like play.",
+    "features": [
+      {
+        "title": "Brain Training",
+        "description": "Games that help you think faster and remember better."
+      },
+      {
+        "title": "Fun Games",
+        "description": "Play colorful games that are easy to understand and enjoy."
+      },
+      {
+        "title": "Track Your Progress",
+        "description": "See how much you have improved over time with simple charts."
+      }
+    ]
+  },
+  "services": {
+    "title": "What We Offer",
+    "description": "Fun activities to help you learn and grow. Start your free trial and unlock all games!",
+    "items": [
+      {
+        "title": "Memory Games",
+        "description": "Match cards and remember patterns to make your memory stronger."
+      },
+      {
+        "title": "Number Games",
+        "description": "Learn to count, add, and compare numbers with easy puzzles."
+      },
+      {
+        "title": "Word Games",
+        "description": "Practice letters, words, and simple reading through fun challenges."
+      },
+      {
+        "title": "Art and Colors",
+        "description": "Draw, paint, and learn about colors in a creative space."
+      },
+      {
+        "title": "Sound and Music",
+        "description": "Play with sounds and rhythms to sharpen your listening skills."
+      }
+    ]
+  },
+  "testimonials": {
+    "title": "What Parents Say",
+    "description": "Hear from families and therapists who use Ablio every day.",
+    "items": [
+      {
+        "author": "Sarah M., Parent",
+        "rating": 5,
+        "description": "My son loves the games! He plays every day and I can see how much his memory has improved. The simple design makes it easy for him to use on his own."
+      },
+      {
+        "author": "David K., Therapist",
+        "rating": 5,
+        "description": "I recommend Ablio to the families I work with. The games are well designed for cognitive training and the kids really enjoy playing them."
+      },
+      {
+        "author": "Maria L., Parent",
+        "rating": 4,
+        "description": "Great app for my daughter. She finds the colors and sounds very fun. It is wonderful to see her learn while having a good time."
+      }
+    ]
+  },
+  "footer": {
+    "termsOfService": "Terms of Service",
+    "privacyPolicy": "Privacy Policy",
+    "pricing": "Pricing",
+    "copyright": "© {year} Ablio. All rights reserved."
+  },
+  "signIn": {
+    "title": "Welcome Back",
+    "description": "Sign in to continue playing your games",
+    "googleButton": "Sign in with Google",
+    "agreement": "By signing in, you agree to our",
+    "termsOfService": "Terms of Service",
+    "and": "and",
+    "privacyPolicy": "Privacy Policy",
+    "errorToast": "Oops, something went wrong"
+  },
+  "signUp": {
+    "title": "Join Ablio",
+    "description": "Create your account and start your free trial",
+    "googleButton": "Sign up with Google",
+    "alreadyHaveAccount": "Already have an account?",
+    "signInLink": "Sign in",
+    "errorToast": "Oops, something went wrong"
+  },
+  "dashboard": {
+    "title": "My Space Journey",
+    "description": "Choose your destination and start exploring the galaxy!",
+    "journeys": "Journeys",
+    "profile": "Profile",
+    "earth": {
+      "title": "Earth",
+      "imageArea": "Earth Image Area",
+      "description": "Dive into the blue planet! Explore deep oceans, green forests, and busy cities.",
+      "explore": "Explore Earth"
+    },
+    "mars": {
+      "title": "Mars",
+      "imageArea": "Mars Image Area",
+      "description": "The mysterious Red Planet. Discover dusty deserts and giant mountains.",
+      "explore": "Explore Mars",
+      "requiresSubscription": "Requires Subscription"
+    },
+    "moon": {
+      "title": "The Moon",
+      "imageArea": "Moon Image Area",
+      "description": "Leap through low gravity and explore the silver craters of our Moon.",
+      "explore": "Explore Moon",
+      "requiresSubscription": "Requires Subscription"
+    }
+  },
+  "profile": {
+    "explorerLevel": "Explorer Level 12",
+    "brightStudent": "Bright Student",
+    "gameMaster": "Game Master",
+    "uploading": "Uploading...",
+    "savePhoto": "Save Photo",
+    "cancel": "Cancel",
+    "settings": "Settings",
+    "gameMusic": "Game Music",
+    "soundtrack": "Soundtrack",
+    "soundEffects": "Sound Effects",
+    "interactions": "Interactions",
+    "personalDetails": "Personal Details",
+    "emailAddress": "Email Address",
+    "fullName": "Full Name",
+    "fullNamePlaceholder": "Enter your full name",
+    "preferredLanguage": "Preferred Language",
+    "selectLanguage": "Select language",
+    "billing": "Billing & Subscription",
+    "manageSubscription": "Manage Subscription",
+    "subscription": "Subscription",
+    "paid": "Paid",
+    "canceled": "Canceled",
+    "unableToLoadBilling": "Unable to load billing history.",
+    "noOrdersYet": "No orders yet. Your billing history will appear here.",
+    "logOut": "Log Out",
+    "saveChanges": "Save Changes",
+    "profileUpdated": "Profile updated successfully",
+    "profileUpdateFailed": "Failed to update profile",
+    "profilePictureUpdated": "Profile picture updated successfully",
+    "profilePictureFailed": "Failed to upload profile picture",
+    "terms": "Terms",
+    "privacy": "Privacy",
+    "footerCopyright": "© {year} Ablio. A safe space for everyone."
+  },
+  "pricing": {
+    "title": "Choose Your Plan",
+    "description": "Start your free trial and explore all that Ablio has to offer.",
+    "currentPlan": "Current Plan",
+    "planName": "Advanced Engines",
+    "planDescription": "Perfect for exploring the solar system",
+    "perMonth": "/month",
+    "features": [
+      "Access to all planets",
+      "10GB Storage",
+      "1 Team Member",
+      "Email Support"
+    ],
+    "manageSubscription": "Manage Subscription",
+    "expires": "Expires {date}",
+    "renews": "Renews {date}",
+    "signInToGetStarted": "Sign In to Get Started",
+    "getStarted": "Get Started",
+    "customPlan": "Need a custom plan?",
+    "contactUs": "Contact us",
+    "backToEarth": "Back to Earth",
+    "backToHome": "Back to Home",
+    "checkoutFailed": "Oops, something went wrong",
+    "portalFailed": "Failed to open subscription management"
+  },
+  "success": {
+    "title": "Payment Successful!",
+    "description": "Thank you! Your account is now ready. You can start playing all games.",
+    "welcome": "Welcome to the team!",
+    "goToDashboard": "Go to Dashboard",
+    "receiptNote": "You will get a confirmation email with your receipt soon."
+  },
+  "userProfile": {
+    "myAccount": "My Account",
+    "profile": "Profile",
+    "logOut": "Log out",
+    "loading": "Loading...",
+    "user": "User",
+    "error": "Error",
+    "errorMessage": "Failed to load user profile. Please try refreshing the page."
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong"
+  },
+  "languageSwitcher": {
+    "sr": "SR",
+    "en": "EN"
+  }
+}

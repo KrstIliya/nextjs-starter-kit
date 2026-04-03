@@ -1,19 +1,26 @@
 import { Rocket } from "lucide-react";
 import Link from "next/link";
 
-const links = [
-  { title: "Terms of Service", href: "/terms-of-service" },
-  { title: "Privacy Policy", href: "/privacy-policy" },
-  { title: "Pricing", href: "/pricing" },
-];
+interface FooterDict {
+  termsOfService: string;
+  privacyPolicy: string;
+  pricing: string;
+  copyright: string;
+}
 
-export default function FooterSection() {
+export default function FooterSection({ dict, lang }: { dict: FooterDict; lang: string }) {
+  const links = [
+    { title: dict.termsOfService, href: `/${lang}/terms-of-service` },
+    { title: dict.privacyPolicy, href: `/${lang}/privacy-policy` },
+    { title: dict.pricing, href: `/${lang}/pricing` },
+  ];
+
   return (
     <footer className="bg-surface-container-lowest py-12">
       <div className="mx-auto max-w-5xl px-6">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 text-lg font-display font-bold text-foreground">
+          <Link href={`/${lang}`} className="flex items-center gap-2 text-lg font-display font-bold text-foreground">
             <Rocket className="h-5 w-5 text-primary" />
             <span>Ablio</span>
           </Link>
@@ -33,7 +40,7 @@ export default function FooterSection() {
 
           {/* Copyright */}
           <p className="text-muted-foreground text-sm text-center">
-            © {new Date().getFullYear()} Ablio. All rights reserved.
+            {dict.copyright.replace("{year}", new Date().getFullYear().toString())}
           </p>
         </div>
       </div>

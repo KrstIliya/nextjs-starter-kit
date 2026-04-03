@@ -1,0 +1,219 @@
+{
+  "metadata": {
+    "title": "Ablio — Uči i napreduj kroz zabavne igre",
+    "description": "Ablio pomaže u poboljšanju kognitivnih i mentalnih sposobnosti kroz interaktivne igre dizajnirane za osobe sa Daunovim sindromom."
+  },
+  "header": {
+    "about": "O nama",
+    "services": "Usluge",
+    "pricing": "Cene",
+    "signIn": "Prijava",
+    "signUp": "Registracija"
+  },
+  "hero": {
+    "badge": "Zabavne igre za učenje",
+    "title": "Uči i napreduj kroz zabavne igre",
+    "description": "Ablio ti pomaže da razvijaš moždane sposobnosti kroz šarene igre koje je lako igrati. Napravljeno za tebe, tvojim tempom.",
+    "ctaPrimary": "Započni besplatni probni period",
+    "ctaSecondary": "Saznaj više"
+  },
+  "about": {
+    "title": "Šta je Ablio?",
+    "description": "Ablio je zabavna platforma koja ti pomaže da razvijaš veštine razmišljanja. Koristimo jednostavne igre da učenje bude poput igre.",
+    "features": [
+      {
+        "title": "Trening mozga",
+        "description": "Igre koje ti pomažu da razmišljaš brže i pamtiš bolje."
+      },
+      {
+        "title": "Zabavne igre",
+        "description": "Igraj šarene igre koje je lako razumeti i uživati u njima."
+      },
+      {
+        "title": "Prati svoj napredak",
+        "description": "Pogledaj koliko si napredovao tokom vremena uz jednostavne grafikone."
+      }
+    ]
+  },
+  "services": {
+    "title": "Šta nudimo",
+    "description": "Zabavne aktivnosti koje ti pomažu da učiš i napreduješ. Započni besplatni probni period i otključaj sve igre!",
+    "items": [
+      {
+        "title": "Igre pamćenja",
+        "description": "Spajaj kartice i pamti obrasce da ojačaš memoriju."
+      },
+      {
+        "title": "Igre sa brojevima",
+        "description": "Nauči da brojiš, sabiraš i porediš brojeve uz lake zagonetke."
+      },
+      {
+        "title": "Igre sa rečima",
+        "description": "Vežbaj slova, reči i jednostavno čitanje kroz zabavne izazove."
+      },
+      {
+        "title": "Umetnost i boje",
+        "description": "Crtaj, slikaj i uči o bojama u kreativnom prostoru."
+      },
+      {
+        "title": "Zvuk i muzika",
+        "description": "Igraj se sa zvukovima i ritmovima da izoštriš slušne veštine."
+      }
+    ]
+  },
+  "testimonials": {
+    "title": "Šta roditelji kažu",
+    "description": "Čujte porodice i terapeute koji koriste Ablio svaki dan.",
+    "items": [
+      {
+        "author": "Sara M., Roditelj",
+        "rating": 5,
+        "description": "Mom sinu se igre mnogo dopadaju! Igra svaki dan i vidim koliko mu se pamćenje poboljšalo. Jednostavan dizajn mu olakšava da koristi aplikaciju samostalno."
+      },
+      {
+        "author": "David K., Terapeut",
+        "rating": 5,
+        "description": "Preporučujem Ablio porodicama sa kojima radim. Igre su dobro dizajnirane za kognitivni trening i deca zaista uživaju u njima."
+      },
+      {
+        "author": "Marija L., Roditelj",
+        "rating": 4,
+        "description": "Odlična aplikacija za moju ćerku. Boje i zvukovi su joj jako zabavni. Predivno je videti kako uči dok se zabavlja."
+      }
+    ]
+  },
+  "footer": {
+    "termsOfService": "Uslovi korišćenja",
+    "privacyPolicy": "Politika privatnosti",
+    "pricing": "Cene",
+    "copyright": "© {year} Ablio. Sva prava zadržana."
+  },
+  "signIn": {
+    "title": "Dobrodošli nazad",
+    "description": "Prijavite se da nastavite sa igrama",
+    "googleButton": "Prijavite se putem Google-a",
+    "agreement": "Prijavljivanjem se slažete sa našim",
+    "termsOfService": "Uslovima korišćenja",
+    "and": "i",
+    "privacyPolicy": "Politikom privatnosti",
+    "errorToast": "Ups, nešto je pošlo po zlu"
+  },
+  "signUp": {
+    "title": "Pridruži se Ablio-u",
+    "description": "Napravi nalog i započni besplatni probni period",
+    "googleButton": "Registruj se putem Google-a",
+    "alreadyHaveAccount": "Već imaš nalog?",
+    "signInLink": "Prijavi se",
+    "errorToast": "Ups, nešto je pošlo po zlu"
+  },
+  "dashboard": {
+    "title": "Moje svemirsko putovanje",
+    "description": "Izaberi svoju destinaciju i počni da istražuješ galaksiju!",
+    "journeys": "Putovanja",
+    "profile": "Profil",
+    "earth": {
+      "title": "Zemlja",
+      "imageArea": "Oblast slike Zemlje",
+      "description": "Zaroni u plavu planetu! Istraži duboke okeane, zelene šume i užurbane gradove.",
+      "explore": "Istraži Zemlju"
+    },
+    "mars": {
+      "title": "Mars",
+      "imageArea": "Oblast slike Marsa",
+      "description": "Tajanstvena Crvena planeta. Otkrij prašnjave pustinje i džinovske planine.",
+      "explore": "Istraži Mars",
+      "requiresSubscription": "Potrebna pretplata"
+    },
+    "moon": {
+      "title": "Mesec",
+      "imageArea": "Oblast slike Meseca",
+      "description": "Skači kroz nisku gravitaciju i istraži srebrne kratere našeg Meseca.",
+      "explore": "Istraži Mesec",
+      "requiresSubscription": "Potrebna pretplata"
+    }
+  },
+  "profile": {
+    "explorerLevel": "Istraživač nivo 12",
+    "brightStudent": "Sjajni učenik",
+    "gameMaster": "Majstor igara",
+    "uploading": "Otpremanje...",
+    "savePhoto": "Sačuvaj sliku",
+    "cancel": "Otkaži",
+    "settings": "Podešavanja",
+    "gameMusic": "Muzika u igri",
+    "soundtrack": "Zvučni zapis",
+    "soundEffects": "Zvučni efekti",
+    "interactions": "Interakcije",
+    "personalDetails": "Lični podaci",
+    "emailAddress": "Email adresa",
+    "fullName": "Puno ime",
+    "fullNamePlaceholder": "Unesite vaše puno ime",
+    "preferredLanguage": "Željeni jezik",
+    "selectLanguage": "Izaberite jezik",
+    "billing": "Naplata i pretplata",
+    "manageSubscription": "Upravljaj pretplatom",
+    "subscription": "Pretplata",
+    "paid": "Plaćeno",
+    "canceled": "Otkazano",
+    "unableToLoadBilling": "Nije moguće učitati istoriju naplate.",
+    "noOrdersYet": "Još nema narudžbina. Vaša istorija naplate će se pojaviti ovde.",
+    "logOut": "Odjavi se",
+    "saveChanges": "Sačuvaj promene",
+    "profileUpdated": "Profil je uspešno ažuriran",
+    "profileUpdateFailed": "Ažuriranje profila nije uspelo",
+    "profilePictureUpdated": "Slika profila je uspešno ažurirana",
+    "profilePictureFailed": "Otpremanje slike profila nije uspelo",
+    "terms": "Uslovi",
+    "privacy": "Privatnost",
+    "footerCopyright": "© {year} Ablio. Siguran prostor za sve."
+  },
+  "pricing": {
+    "title": "Izaberi svoj plan",
+    "description": "Započni besplatni probni period i istraži sve što Ablio nudi.",
+    "currentPlan": "Trenutni plan",
+    "planName": "Napredni motori",
+    "planDescription": "Savršeno za istraživanje Sunčevog sistema",
+    "perMonth": "/mesečno",
+    "features": [
+      "Pristup svim planetama",
+      "10GB skladište",
+      "1 član tima",
+      "Email podrška"
+    ],
+    "manageSubscription": "Upravljaj pretplatom",
+    "expires": "Ističe {date}",
+    "renews": "Obnavlja se {date}",
+    "signInToGetStarted": "Prijavi se da započneš",
+    "getStarted": "Započni",
+    "customPlan": "Potreban ti je prilagođeni plan?",
+    "contactUs": "Kontaktiraj nas",
+    "backToEarth": "Nazad na Zemlju",
+    "backToHome": "Nazad na početnu",
+    "checkoutFailed": "Ups, nešto je pošlo po zlu",
+    "portalFailed": "Otvaranje upravljanja pretplatom nije uspelo"
+  },
+  "success": {
+    "title": "Plaćanje uspešno!",
+    "description": "Hvala! Vaš nalog je sada spreman. Možete početi da igrate sve igre.",
+    "welcome": "Dobrodošli u tim!",
+    "goToDashboard": "Idi na kontrolnu tablu",
+    "receiptNote": "Uskoro ćete dobiti email potvrdu sa računom."
+  },
+  "userProfile": {
+    "myAccount": "Moj nalog",
+    "profile": "Profil",
+    "logOut": "Odjavi se",
+    "loading": "Učitavanje...",
+    "user": "Korisnik",
+    "error": "Greška",
+    "errorMessage": "Učitavanje profila nije uspelo. Pokušajte da osvežite stranicu."
+  },
+  "common": {
+    "loading": "Učitavanje...",
+    "error": "Nešto je pošlo po zlu"
+  },
+  "languageSwitcher": {
+    "sr": "SR",
+    "en": "EN"
+  }
+}

@@ -12,7 +12,7 @@ import PageContainer from "@/components/space/page-container";
 import { authClient } from "@/lib/auth-client";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useParams } from "next/navigation";
 import { Suspense, useState } from "react";
 import { toast } from "sonner";
 import { Rocket } from "lucide-react";
@@ -20,12 +20,23 @@ import { Rocket } from "lucide-react";
 function SignUpContent() {
   const [loading, setLoading] = useState(false);
   const searchParams = useSearchParams();
+  const params = useParams();
+  const lang = (params.lang as string) || "sr";
   const returnTo = searchParams.get("returnTo");
+
+  const dict = {
+    title: lang === "sr" ? "Pridruži se Ablio-u" : "Join Ablio",
+    description: lang === "sr" ? "Napravi nalog i započni besplatni probni period" : "Create your account and start your free trial",
+    googleButton: lang === "sr" ? "Registruj se putem Google-a" : "Sign up with Google",
+    alreadyHaveAccount: lang === "sr" ? "Već imaš nalog?" : "Already have an account?",
+    signInLink: lang === "sr" ? "Prijavi se" : "Sign in",
+    errorToast: lang === "sr" ? "Ups, nešto je pošlo po zlu" : "Oops, something went wrong",
+  };
 
   return (
     <PageContainer>
       <div className="flex flex-col justify-center items-center w-full min-h-screen px-6">
-        <Link href="/" className="flex items-center gap-2 text-2xl font-display font-bold text-foreground mb-8">
+        <Link href={`/${lang}`} className="flex items-center gap-2 text-2xl font-display font-bold text-foreground mb-8">
           <Rocket className="h-7 w-7 text-primary" />
           <span>Ablio</span>
         </Link>
@@ -33,10 +44,10 @@ function SignUpContent() {
         <Card className="max-w-md w-full bg-card">
           <CardHeader className="text-center">
             <CardTitle className="text-xl md:text-2xl font-display font-bold">
-              Join Ablio
+              {dict.title}
             </CardTitle>
             <CardDescription className="text-base mt-2">
-              Create your account and start your free trial
+              {dict.description}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -56,7 +67,7 @@ function SignUpContent() {
                       await authClient.signIn.social(
                         {
                           provider: "google",
-                          callbackURL: returnTo || "/pricing",
+                          callbackURL: returnTo || `/${lang}/pricing`,
                         },
                         {
                           onRequest: () => {
@@ -74,7 +85,7 @@ function SignUpContent() {
                     } catch (error) {
                       setLoading(false);
                       console.error("Sign-up failed:", error);
-                      toast.error("Oops, something went wrong", {
+                      toast.error(dict.errorToast, {
                         duration: 5000,
                       });
                     }
@@ -103,7 +114,7 @@ function SignUpContent() {
                       d="M130.55 50.479c24.514 0 41.05 10.589 50.479 19.438l36.844-35.974C195.245 12.91 165.798 0 130.55 0C79.49 0 35.393 29.301 13.925 71.947l42.211 32.783c10.59-31.477 39.891-54.251 74.414-54.251"
                     ></path>
                   </svg>
-                  Sign up with Google
+                  {dict.googleButton}
                 </Button>
               </div>
             </div>
@@ -111,9 +122,9 @@ function SignUpContent() {
         </Card>
 
         <p className="mt-6 text-sm text-muted-foreground">
-          Already have an account?{" "}
-          <Link href="/sign-in" className="text-primary hover:underline font-medium">
-            Sign in
+          {dict.alreadyHaveAccount}{" "}
+          <Link href={`/${lang}/sign-in`} className="text-primary hover:underline font-medium">
+            {dict.signInLink}
           </Link>
         </p>
       </div>

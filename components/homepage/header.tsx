@@ -5,22 +5,31 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu, Rocket } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import LanguageSwitcher from "@/components/language-switcher";
 
-const navLinks = [
-    { label: "About", href: "#about" },
-    { label: "Services", href: "#services" },
-    { label: "Pricing", href: "#pricing" },
-];
+interface HeaderDict {
+    about: string;
+    services: string;
+    pricing: string;
+    signIn: string;
+    signUp: string;
+}
 
-export default function Header() {
+export default function Header({ dict, lang }: { dict: HeaderDict; lang: string }) {
     const [open, setOpen] = useState(false);
+
+    const navLinks = [
+        { label: dict.about, href: "#about" },
+        { label: dict.services, href: "#services" },
+        { label: dict.pricing, href: "#pricing" },
+    ];
 
     return (
         <header className="sticky top-0 z-50 bg-surface-bright/60 backdrop-blur-[20px] mb-10">
             <div className="flex w-full items-center justify-between px-6 py-3 relative">
                 {/* Logo */}
                 <Link
-                    href="/"
+                    href={`/${lang}`}
                     className="flex items-center gap-2 text-xl font-display font-bold text-foreground"
                     prefetch={true}
                 >
@@ -41,16 +50,17 @@ export default function Header() {
                     ))}
                 </nav>
 
-                {/* Desktop Auth Buttons */}
+                {/* Desktop Auth Buttons + Language Switcher */}
                 <div className="hidden md:flex items-center gap-3">
+                    <LanguageSwitcher />
                     <Button asChild variant="ghost" size="lg" className="min-h-12 text-base">
-                        <Link href="/sign-in" prefetch={true}>
-                            Sign In
+                        <Link href={`/${lang}/sign-in`} prefetch={true}>
+                            {dict.signIn}
                         </Link>
                     </Button>
                     <Button asChild variant="default" size="lg" className="min-h-12 text-base">
-                        <Link href="/sign-up" prefetch={true}>
-                            Sign Up
+                        <Link href={`/${lang}/sign-up`} prefetch={true}>
+                            {dict.signUp}
                         </Link>
                     </Button>
                 </div>
@@ -79,15 +89,18 @@ export default function Header() {
                                     {link.label}
                                 </a>
                             ))}
+                            <div className="px-4 py-2">
+                                <LanguageSwitcher />
+                            </div>
                             <hr className="border-border my-2" />
                             <Button asChild variant="ghost" size="lg" className="min-h-12 justify-start text-base">
-                                <Link href="/sign-in" prefetch={true} onClick={() => setOpen(false)}>
-                                    Sign In
+                                <Link href={`/${lang}/sign-in`} prefetch={true} onClick={() => setOpen(false)}>
+                                    {dict.signIn}
                                 </Link>
                             </Button>
                             <Button asChild variant="default" size="lg" className="min-h-12 text-base">
-                                <Link href="/sign-up" prefetch={true} onClick={() => setOpen(false)}>
-                                    Sign Up
+                                <Link href={`/${lang}/sign-up`} prefetch={true} onClick={() => setOpen(false)}>
+                                    {dict.signUp}
                                 </Link>
                             </Button>
                         </nav>

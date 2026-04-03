@@ -8,49 +8,34 @@ import {
   Music,
 } from "lucide-react";
 
-const services = [
-  {
-    icon: Puzzle,
-    title: "Memory Games",
-    description: "Match cards and remember patterns to make your memory stronger.",
-  },
-  {
-    icon: Calculator,
-    title: "Number Games",
-    description: "Learn to count, add, and compare numbers with easy puzzles.",
-  },
-  {
-    icon: BookOpen,
-    title: "Word Games",
-    description: "Practice letters, words, and simple reading through fun challenges.",
-  },
-  {
-    icon: Palette,
-    title: "Art and Colors",
-    description: "Draw, paint, and learn about colors in a creative space.",
-  },
-  {
-    icon: Music,
-    title: "Sound and Music",
-    description: "Play with sounds and rhythms to sharpen your listening skills.",
-  },
-];
+const serviceIcons = [Puzzle, Calculator, BookOpen, Palette, Music];
 
-export default function WhatWeOffer() {
+interface ServiceItem {
+  title: string;
+  description: string;
+}
+
+interface ServicesDict {
+  title: string;
+  description: string;
+  items: ServiceItem[];
+}
+
+export default function WhatWeOffer({ dict }: { dict: ServicesDict }) {
   return (
     <SectionContainer id="services">
       <div className="text-center mb-12">
         <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground">
-          What We Offer
+          {dict.title}
         </h2>
         <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-          Fun activities to help you learn and grow. Start your free trial and unlock all games!
+          {dict.description}
         </p>
       </div>
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {services.map((service) => {
-          const Icon = service.icon;
+        {dict.items.map((service, index) => {
+          const Icon = serviceIcons[index];
           return (
             <Card
               key={service.title}
