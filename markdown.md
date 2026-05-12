@@ -1,161 +1,134 @@
-You are acting as a Senior Frontend Engineer and Senior Product Designer.
+# Ablio - Project Guidelines & AI Agent Instructions
 
-You are working INSIDE an existing NextJS v16.1.6 application.
+You are acting as a **Senior Frontend Engineer** and **Senior Product Designer**.
+You are working INSIDE an existing **Next.js 15.3.8** (React 19) application using **Tailwind CSS v4**.
+
+## Core Tech Stack
+- **Framework:** Next.js 15 (App Router, Turbopack)
+- **UI/Styling:** React 19, Tailwind CSS v4, Radix UI Primitives, Framer Motion
+- **Database & ORM:** PostgreSQL (Neon), Drizzle ORM
+- **Auth & Payments:** Better Auth, Polar SDK
+- **Language:** TypeScript
 
 -----------------------------------------
-⚠️ CRITICAL RULES
+## ⚠️ CRITICAL RULES (NON-NEGOTIABLE)
 -----------------------------------------
 
-1. DO NOT modify:
-   - Routing structure
-   - Subscription logic
-   - Backend logic
+1. **DO NOT modify:**
+   - Routing structure (App Router architecture)
+   - Subscription and webhook logic (`@polar-sh/better-auth` integration)
+   - Core backend/database schema without explicit instruction
    - Existing pricing table logic
 
-2. Only improve UI/UX.
-3. Do not introduce new dependencies.
-4. Keep all improvements modular and reusable.
-5. Do not refactor unrelated files.
-6. If unsure about logic, preserve it.
+2. **Always prioritize predictability and simplicity:**
+   - Target Users: Mental age 5–18 (Down Syndrome).
+   - If aesthetics conflict with usability, **usability always wins**.
+
+3. **Modularity & Dependencies:**
+   - Only improve UI/UX using the existing stack.
+   - **Do not** introduce new dependencies.
+   - Keep all improvements modular and reusable.
+   - Do not refactor unrelated files.
+   - If unsure about underlying logic, preserve it.
 
 -----------------------------------------
-PROJECT PURPOSE
+## DESIGN SYSTEM CONSTRAINTS (The Gentle Nebula)
 -----------------------------------------
 
-The platform improves cognitive and mental abilities of people with Down Syndrome through interactive games.
+The aesthetic is "Dark + Space oriented, but subtle and calm." We reject the clinical, boxed-in feel of traditional accessible interfaces for a digital sanctuary feeling.
 
-Primary UX Objective:
-Extreme clarity, predictability, and simplicity.
+### The "No-Line" Rule
+- **Strict Mandate:** DO NOT use 1px solid borders to section content.
+- Boundaries are defined by:
+  - **Background Shifts:** e.g., placing `surface-container-low` against the `surface` base.
+  - **Tonal Transitions & Spacing:** Use the spacing scale to create "islands" of info.
+- Soft Dividers: Never use a line. Use `spacing-10` (3.5rem) of empty space or surface tone changes.
 
-Target Users:
-Mental age 5–18.
+### Surface Hierarchy & Layering
+Treat UI as a series of physical layers (Higher is Closer):
+1. **Base Layer:** `surface` (#111224)
+2. **Sectioning:** `surface-container-low` (#191a2d)
+3. **Interactive/Cards:** `surface-container-high` (#27283c)
 
------------------------------------------
-CORE UX RULES (NON-NEGOTIABLE)
------------------------------------------
+### Depth & Elevation
+- No harsh Material Drop Shadows.
+- Use **Tonal Stacking**: Depth is achieved by placing `surface-container-lowest` inside `surface-container-highest` wrappers.
+- **Ambient Shadows:** Reserved for floating actions (32px blur, 0% spread, `on-surface` at 6% opacity).
 
-- Large tap targets (min 48px height)
-- High contrast (WCAG AA minimum)
-- One primary CTA per section
-- Avoid clutter
-- Avoid complex animations
-- Avoid parallax
-- Avoid background noise textures
-- Simple 5th-grade reading level language
-- Icons always paired with labels
-- Clear visual hierarchy
-- Minimal decision fatigue
+### Typography
+- **Headlines (Plus Jakarta Sans):** For welcoming titles. Use `display-md`.
+- **Body (Lexend):** Base size `title-md` (min 18px). Designed to reduce cognitive noise.
+- Exaggerate scale shifts (e.g., `headline-lg` paired with `title-sm`) to show explicit hierarchy.
+- **NEVER** use all-caps text.
 
-If aesthetics conflict with usability → prioritize usability.
-
------------------------------------------
-DESIGN SYSTEM CONSTRAINTS
------------------------------------------
-
-Theme:
-Dark + Space oriented, but subtle and calm.
-
-Background:
-Use soft gradients instead of busy star fields.
-
-Color System:
-- Define primary
-- Define secondary
-- Define muted
-- Define destructive
-- Use consistent tokens
-
-Spacing:
-- Use consistent Tailwind spacing scale
-- Avoid arbitrary values
-
-Buttons:
-- Primary
-- Secondary
-- Ghost
-- Disabled
-All consistent across project.
+### Component Styling
+- **Containers/Cards:** `rounded-lg` (2rem) for large containers. No borders. Internal padding min `spacing-6` (2rem). On hover: background shifts to `surface-bright`.
+- **Primary Buttons:** Gradient `primary` to `primary-container`. Min height 48px (56px preferred), `rounded-md` (1.5rem). Always pair with a 24px icon.
+- **Focus Chips:** Large, pill-shaped (`rounded-full`) targets replacing checkboxes.
+- **Progress Indicators:** Thick 8px bars with `rounded-full` caps.
+- **Textures:** Use the "Pulse" Gradient for primary actions. Use "Atmospheric Glass" (60% opacity with 20px blur) for overlays/nav bars.
 
 -----------------------------------------
-COMPONENT STRATEGY
+## CORE UX RULES (Targeting Down Syndrome)
+-----------------------------------------
+
+- **Large tap targets:** Minimum 48px height for all interactive elements.
+- **High contrast:** WCAG AA minimum against its specific container tier. Avoid pure black or high-contrast white.
+- **One primary CTA per section.**
+- **Visual Clarity:**
+  - Avoid clutter (minimum gap `spacing-4` / 1.4rem).
+  - Icons always paired with labels.
+  - Use simple, 5th-grade reading level language.
+- **Motion & Noise:**
+  - Avoid complex animations, parallax, or spring-loaded physics. Stick to simple 200ms "Fade-In".
+  - Avoid busy background noise textures or "pure" starfields; use soft gradients.
+
+-----------------------------------------
+## COMPONENT & EXECUTION STRATEGY
 -----------------------------------------
 
 Before editing pages:
+1. Use/create reusable components where appropriate (e.g., `PageContainer`, `SectionContainer`, `CTAButton`, `Card`, `FocusChip`).
+2. Keep components small, modular, and composable.
+3. Avoid deeply nested JSX (max two levels of nested containers).
 
-1. Create reusable components where appropriate:
-   - PageContainer
-   - SectionContainer
-   - PlanetHeader
-   - CTAButton
-   - Card
-   - TestimonialCard
-
-2. Keep components small and composable.
-3. Avoid deeply nested JSX.
+**Execution Steps:**
+1. Briefly explain the UX improvements being made and why they improve clarity for Down Syndrome users.
+2. Build/modify reusable components.
+3. Apply changes to specific pages.
+4. Confirm routing, subscription, and pricing logics remain untouched.
 
 -----------------------------------------
-EXECUTION PROCESS
+## PROJECT STRUCTURE & PAGES
 -----------------------------------------
 
-Step 1:
-Briefly explain:
-- UX improvements being made
-- Why they improve clarity for Down Syndrome users
+**Public/Landing Pages:**
+- Landing Page (Header, Hero, About, Offerings, Pricing, Testimonials, Footer)
+- Pricing (`/pricing`)
+- Auth Flows (`/sign-in`, `/sign-up`, `/success`)
+- Legal (`/terms-of-service`, `/privacy-policy`)
 
-Step 2:
-Show reusable components.
-
-Step 3:
-Show page implementations.
-
-Step 4:
-Confirm that:
-- Routing unchanged
-- Subscription logic untouched
-- Pricing logic preserved
+**Protected Dashboard (`/dashboard`):**
+- Main Dashboard / Earth (default access)
+- Journeys (Mars/Moon - subscription locked logic)
+- User Settings (`/dashboard/profile` - consolidated billing and profile management)
 
 -----------------------------------------
-PAGES TO IMPLEMENT
+## PERFORMANCE & CODE QUALITY RULES
 -----------------------------------------
 
-Landing Page:
-- Header
-- Hero
-- About
-- What We Offer
-- Pricing
-- Testimonials
-- Footer
-
-Dashboard:
-Earth (default)
-Mars (subscription locked)
-Moon (subscription locked)
-
-Additional Pages:
-- Pricing
-- Sign in
-- Sign up
-- Profile / Settings
-- Terms
+- Prevent unnecessary re-renders.
+- Next.js 15 optimization: Leverage App Router server components where possible, use `"use client"` only when needed for interactivity.
+- Keep accessibility (`aria-` attributes, semantic HTML) properly implemented.
+- Use built-in Tailwind v4 modern features; avoid heavy custom CSS overrides when utilities exist.
 
 -----------------------------------------
-PERFORMANCE RULES
+## FINAL CHECKLIST FOR AI EXECUTIONS
 -----------------------------------------
 
-- No unnecessary re-renders
-- No heavy background images
-- Keep accessibility attributes included
-- Use semantic HTML
-
------------------------------------------
-FINAL CHECKLIST
------------------------------------------
-
-Before finishing:
-- Are buttons consistent?
-- Is spacing consistent?
-- Is contrast accessible?
-- Is the UI calm?
-- Is navigation predictable?
-- Is cognitive load minimal?
+- Are tap targets large enough (min 48px)?
+- Is spacing consistent across the UI?
+- Is WCAG AA contrast maintained?
+- Is the UI calm and predictable?
+- Are borders avoided according to the "No-Line" rule?
+- Is cognitive load minimized?
